@@ -1,0 +1,125 @@
+﻿{
+  "name": "NIBGARInOperation",
+  "modelName": "n-i-b-g-a-r-in-operation",
+  "className": "ARInOperation",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "activeResource",
+      "relatedTo": "n-i-b-g-active-resource",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "operation",
+      "relatedTo": "n-i-b-g-operation",
+      "inverse": null
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ARInOperationE",
+      "modelName": "n-i-b-g-a-r-in-operation",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ActiveResource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": 0,
+          "caption": "Active resource",
+          "name": "activeResource",
+          "relatedTo": "n-i-b-g-active-resource",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Operation",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": 2,
+          "caption": "Operation",
+          "name": "operation",
+          "relatedTo": "n-i-b-g-operation",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ARInOperationL",
+      "modelName": "n-i-b-g-a-r-in-operation",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ActiveResource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 0
+            }
+          ],
+          "index": -1,
+          "caption": "Code",
+          "name": "activeResource",
+          "relatedTo": "n-i-b-g-active-resource",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Operation",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": -1,
+          "caption": "Code",
+          "name": "operation",
+          "relatedTo": "n-i-b-g-operation",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

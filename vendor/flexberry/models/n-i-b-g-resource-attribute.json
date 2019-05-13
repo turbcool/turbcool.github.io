@@ -1,0 +1,141 @@
+﻿{
+  "name": "NIBGResourceAttribute",
+  "modelName": "n-i-b-g-resource-attribute",
+  "className": "ResourceAttribute",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "code",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "amount",
+      "type": "number",
+      "flexberryType": "double",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "resource",
+      "relatedTo": "n-i-b-g-resource",
+      "inverse": null
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ResourceAttributeE",
+      "modelName": "n-i-b-g-resource-attribute",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Code",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "amount",
+          "caption": "Amount",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Resource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 4
+            }
+          ],
+          "index": 3,
+          "caption": "Resource",
+          "name": "resource",
+          "relatedTo": "n-i-b-g-resource",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ResourceAttributeL",
+      "modelName": "n-i-b-g-resource-attribute",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Code",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "amount",
+          "caption": "Amount",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Resource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": -1,
+          "caption": "Code",
+          "name": "resource",
+          "relatedTo": "n-i-b-g-resource",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Resource",
+      "projection": "ResourceL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "Resource attribute",
+  "name": "NIBGResourceAttributeE",
+  "className": "ResourceAttributeE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-resource-attribute",
+      "modelProjection": "ResourceAttributeE"
+    }
+  ]
+}

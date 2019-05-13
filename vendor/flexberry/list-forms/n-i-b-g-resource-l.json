@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-resource-e",
+  "editForm": "n-i-b-g-resource-e",
+  "caption": "Resource",
+  "name": "NIBGResourceL",
+  "className": "ResourceL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-resource",
+      "modelProjection": "ResourceL"
+    }
+  ]
+}

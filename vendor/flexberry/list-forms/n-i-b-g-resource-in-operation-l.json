@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-resource-in-operation-e",
+  "editForm": "n-i-b-g-resource-in-operation-e",
+  "caption": "Resource in operation",
+  "name": "NIBGResourceInOperationL",
+  "className": "ResourceInOperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-resource-in-operation",
+      "modelProjection": "ResourceInOperationL"
+    }
+  ]
+}

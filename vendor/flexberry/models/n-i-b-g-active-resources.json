@@ -1,0 +1,28 @@
+﻿{
+  "name": "NIBGActiveResources",
+  "modelName": "n-i-b-g-active-resources",
+  "className": "ActiveResources",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ActiveResourcesE",
+      "modelName": "n-i-b-g-active-resources",
+      "attrs": [],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "ActiveResourcesL",
+      "modelName": "n-i-b-g-active-resources",
+      "attrs": [],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

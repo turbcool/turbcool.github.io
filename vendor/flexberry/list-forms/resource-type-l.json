@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "resource-type-e",
+  "editForm": "resource-type-e",
+  "caption": "Resource type",
+  "name": "ResourceTypeL",
+  "className": "ResourceTypeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "resource-type",
+      "modelProjection": "ResourceTypeL"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ARBusinessProcess",
+      "projection": "ARBusinessProcessL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r operation",
+  "name": "NIBGAROperationE",
+  "className": "AROperationE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-operation",
+      "modelProjection": "AROperationE"
+    }
+  ]
+}

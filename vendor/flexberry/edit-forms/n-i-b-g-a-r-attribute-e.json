@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ARInstance",
+      "projection": "ARInstanceL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r attribute",
+  "name": "NIBGARAttributeE",
+  "className": "ARAttributeE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-attribute",
+      "modelProjection": "ARAttributeE"
+    }
+  ]
+}

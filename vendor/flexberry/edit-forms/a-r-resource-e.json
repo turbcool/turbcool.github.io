@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "A r resource",
+  "name": "ARResourceE",
+  "className": "ARResourceE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-resource",
+      "modelProjection": "ARResourceE"
+    }
+  ]
+}

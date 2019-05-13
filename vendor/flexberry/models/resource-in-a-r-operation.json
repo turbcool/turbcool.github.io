@@ -1,0 +1,125 @@
+﻿{
+  "name": "ResourceInAROperation",
+  "modelName": "resource-in-a-r-operation",
+  "className": "ResourceInAROperation",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "aROperation",
+      "relatedTo": "a-r-operation",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "resource",
+      "relatedTo": "resource",
+      "inverse": null
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ResourceInAROperationE",
+      "modelName": "resource-in-a-r-operation",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "AROperation",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Name",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": 0,
+          "caption": "A r operation",
+          "name": "aROperation",
+          "relatedTo": "a-r-operation",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Resource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Name",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": 2,
+          "caption": "Resource",
+          "name": "resource",
+          "relatedTo": "resource",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ResourceInAROperationL",
+      "modelName": "resource-in-a-r-operation",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "AROperation",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Name",
+              "hidden": false,
+              "index": 0
+            }
+          ],
+          "index": -1,
+          "caption": "Name",
+          "name": "aROperation",
+          "relatedTo": "a-r-operation",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Resource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Name",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": -1,
+          "caption": "Name",
+          "name": "resource",
+          "relatedTo": "resource",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

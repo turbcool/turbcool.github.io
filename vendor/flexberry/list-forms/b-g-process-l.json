@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "b-g-process-e",
+  "editForm": "b-g-process-e",
+  "caption": "Process",
+  "name": "BGProcessL",
+  "className": "ProcessL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-process",
+      "modelProjection": "ProcessL"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "a-r-business-process-e",
+  "editForm": "a-r-business-process-e",
+  "caption": "A r business process",
+  "name": "ARBusinessProcessL",
+  "className": "ARBusinessProcessL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-business-process",
+      "modelProjection": "ARBusinessProcessL"
+    }
+  ]
+}

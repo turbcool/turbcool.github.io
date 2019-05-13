@@ -1,0 +1,30 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ARBusinessProcess",
+      "projection": "ARBusinessProcessL",
+      "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Operation",
+      "projection": "OperationL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r b p in operation",
+  "name": "ARBPInOperationE",
+  "className": "ARBPInOperationE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-b-p-in-operation",
+      "modelProjection": "ARBPInOperationE"
+    }
+  ]
+}

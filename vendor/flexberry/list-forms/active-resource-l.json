@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "active-resource-e",
+  "editForm": "active-resource-e",
+  "caption": "Active resource",
+  "name": "ActiveResourceL",
+  "className": "ActiveResourceL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "active-resource",
+      "modelProjection": "ActiveResourceL"
+    }
+  ]
+}

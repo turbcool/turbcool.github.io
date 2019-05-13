@@ -1,0 +1,125 @@
+﻿{
+  "name": "NIBGARBPInOperation",
+  "modelName": "n-i-b-g-a-r-b-p-in-operation",
+  "className": "ARBPInOperation",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "aRBusinessProcess",
+      "relatedTo": "n-i-b-g-a-r-business-process",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "operation",
+      "relatedTo": "n-i-b-g-operation",
+      "inverse": null
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ARBPInOperationE",
+      "modelName": "n-i-b-g-a-r-b-p-in-operation",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ARBusinessProcess",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Name",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": 0,
+          "caption": "A r business process",
+          "name": "aRBusinessProcess",
+          "relatedTo": "n-i-b-g-a-r-business-process",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Operation",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Name",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": 2,
+          "caption": "Operation",
+          "name": "operation",
+          "relatedTo": "n-i-b-g-operation",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ARBPInOperationL",
+      "modelName": "n-i-b-g-a-r-b-p-in-operation",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ARBusinessProcess",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Name",
+              "hidden": false,
+              "index": 0
+            }
+          ],
+          "index": -1,
+          "caption": "Name",
+          "name": "aRBusinessProcess",
+          "relatedTo": "n-i-b-g-a-r-business-process",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Operation",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Name",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": -1,
+          "caption": "Name",
+          "name": "operation",
+          "relatedTo": "n-i-b-g-operation",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

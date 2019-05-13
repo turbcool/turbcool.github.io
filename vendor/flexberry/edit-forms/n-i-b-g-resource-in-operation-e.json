@@ -1,0 +1,30 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Resource",
+      "projection": "ResourceL",
+      "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Operation",
+      "projection": "OperationL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "Resource in operation",
+  "name": "NIBGResourceInOperationE",
+  "className": "ResourceInOperationE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-resource-in-operation",
+      "modelProjection": "ResourceInOperationE"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Res type",
+  "name": "BGResTypeE",
+  "className": "ResTypeE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-res-type",
+      "modelProjection": "ResTypeE"
+    }
+  ]
+}

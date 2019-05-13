@@ -1,0 +1,73 @@
+﻿{
+  "name": "BGAttribute",
+  "modelName": "b-g-attribute",
+  "className": "Attribute",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "keyname",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "0",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "resource",
+      "relatedTo": "b-g-resource",
+      "inverse": "attribute"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "AttributeE",
+      "modelName": "b-g-attribute",
+      "attrs": [
+        {
+          "name": "keyname",
+          "caption": "Ключ имя",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "value",
+          "caption": "Значение",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

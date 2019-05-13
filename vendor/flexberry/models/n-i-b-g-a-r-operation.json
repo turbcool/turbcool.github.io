@@ -1,0 +1,141 @@
+﻿{
+  "name": "NIBGAROperation",
+  "modelName": "n-i-b-g-a-r-operation",
+  "className": "AROperation",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "code",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "duration",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "aRBusinessProcess",
+      "relatedTo": "n-i-b-g-a-r-business-process",
+      "inverse": null
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "AROperationE",
+      "modelName": "n-i-b-g-a-r-operation",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Code",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "duration",
+          "caption": "Duration",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ARBusinessProcess",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 4
+            }
+          ],
+          "index": 3,
+          "caption": "A r business process",
+          "name": "aRBusinessProcess",
+          "relatedTo": "n-i-b-g-a-r-business-process",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "AROperationL",
+      "modelName": "n-i-b-g-a-r-operation",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Code",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "duration",
+          "caption": "Duration",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ARBusinessProcess",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": -1,
+          "caption": "Code",
+          "name": "aRBusinessProcess",
+          "relatedTo": "n-i-b-g-a-r-business-process",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

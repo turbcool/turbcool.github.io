@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "A r resource",
+  "name": "NIBGARResourceE",
+  "className": "ARResourceE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-resource",
+      "modelProjection": "ARResourceE"
+    }
+  ]
+}

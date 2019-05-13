@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "resource-attribute-e",
+  "editForm": "resource-attribute-e",
+  "caption": "Resource attribute",
+  "name": "ResourceAttributeL",
+  "className": "ResourceAttributeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "resource-attribute",
+      "modelProjection": "ResourceAttributeL"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "a-r-operation-e",
+  "editForm": "a-r-operation-e",
+  "caption": "A r operation",
+  "name": "AROperationL",
+  "className": "AROperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-operation",
+      "modelProjection": "AROperationL"
+    }
+  ]
+}

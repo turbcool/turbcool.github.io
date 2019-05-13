@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "resource-in-a-r-operation-e",
+  "editForm": "resource-in-a-r-operation-e",
+  "caption": "Resource in a r operation",
+  "name": "ResourceInAROperationL",
+  "className": "ResourceInAROperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "resource-in-a-r-operation",
+      "modelProjection": "ResourceInAROperationL"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "business-process-e",
+  "editForm": "business-process-e",
+  "caption": "Business process",
+  "name": "BusinessProcessL",
+  "className": "BusinessProcessL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "business-process",
+      "modelProjection": "BusinessProcessL"
+    }
+  ]
+}

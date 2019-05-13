@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-a-r-b-p-in-operation-e",
+  "editForm": "n-i-b-g-a-r-b-p-in-operation-e",
+  "caption": "A r b p in operation",
+  "name": "NIBGARBPInOperationL",
+  "className": "ARBPInOperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-b-p-in-operation",
+      "modelProjection": "ARBPInOperationL"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Active resource",
+  "name": "NIBGActiveResourceE",
+  "className": "ActiveResourceE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-active-resource",
+      "modelProjection": "ActiveResourceE"
+    }
+  ]
+}

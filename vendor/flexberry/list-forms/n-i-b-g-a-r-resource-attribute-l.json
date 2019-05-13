@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-a-r-resource-attribute-e",
+  "editForm": "n-i-b-g-a-r-resource-attribute-e",
+  "caption": "A r resource attribute",
+  "name": "NIBGARResourceAttributeL",
+  "className": "ARResourceAttributeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-resource-attribute",
+      "modelProjection": "ARResourceAttributeL"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+﻿{
+  "name": "BGProcess",
+  "modelName": "b-g-process",
+  "className": "Process",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "code",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "time",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "1",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [
+    {
+      "name": "operation",
+      "relatedTo": "b-g-operation",
+      "inverse": "process"
+    }
+  ],
+  "projections": [
+    {
+      "name": "ProcessE",
+      "modelName": "b-g-process",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Код процесса",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "time",
+          "caption": "Время выполнения (ч)",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": [
+        {
+          "projectionName": "OperationE",
+          "caption": "",
+          "name": "operation",
+          "relatedTo": "b-g-operation",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "ProcessL",
+      "modelName": "b-g-process",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Код процесса",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "time",
+          "caption": "Время выполнения (ч)",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

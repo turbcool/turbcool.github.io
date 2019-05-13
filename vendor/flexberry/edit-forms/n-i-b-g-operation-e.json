@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "BusinessProcess",
+      "projection": "BusinessProcessL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "Operation",
+  "name": "NIBGOperationE",
+  "className": "OperationE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-operation",
+      "modelProjection": "OperationE"
+    }
+  ]
+}

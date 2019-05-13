@@ -1,0 +1,71 @@
+﻿{
+  "name": "NIBGResourceType",
+  "modelName": "n-i-b-g-resource-type",
+  "className": "ResourceType",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "code",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ResourceTypeE",
+      "modelName": "n-i-b-g-resource-type",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Code",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "ResourceTypeL",
+      "modelName": "n-i-b-g-resource-type",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Code",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

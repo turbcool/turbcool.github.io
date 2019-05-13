@@ -1,0 +1,30 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ARResource",
+      "projection": "ARResourceL",
+      "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "AROperation",
+      "projection": "AROperationL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r resource i n a r operation",
+  "name": "ARResourceINAROperationE",
+  "className": "ARResourceINAROperationE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-resource-i-n-a-r-operation",
+      "modelProjection": "ARResourceINAROperationE"
+    }
+  ]
+}

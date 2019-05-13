@@ -1,0 +1,30 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "AROperation",
+      "projection": "AROperationL",
+      "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ActiveResource",
+      "projection": "ActiveResourceL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r instance",
+  "name": "ARInstanceE",
+  "className": "ARInstanceE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-instance",
+      "modelProjection": "ARInstanceE"
+    }
+  ]
+}

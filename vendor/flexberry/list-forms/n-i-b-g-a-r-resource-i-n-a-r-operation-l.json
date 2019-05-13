@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-a-r-resource-i-n-a-r-operation-e",
+  "editForm": "n-i-b-g-a-r-resource-i-n-a-r-operation-e",
+  "caption": "A r resource i n a r operation",
+  "name": "NIBGARResourceINAROperationL",
+  "className": "ARResourceINAROperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-resource-i-n-a-r-operation",
+      "modelProjection": "ARResourceINAROperationL"
+    }
+  ]
+}

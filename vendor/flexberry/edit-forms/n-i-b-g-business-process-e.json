@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Business process",
+  "name": "NIBGBusinessProcessE",
+  "className": "BusinessProcessE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-business-process",
+      "modelProjection": "BusinessProcessE"
+    }
+  ]
+}

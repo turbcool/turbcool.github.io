@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "b-g-resource-process-e",
+  "editForm": "b-g-resource-process-e",
+  "caption": "Resource process",
+  "name": "BGResourceProcessL",
+  "className": "ResourceProcessL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-resource-process",
+      "modelProjection": "ResourceProcessL"
+    }
+  ]
+}

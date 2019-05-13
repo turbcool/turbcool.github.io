@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ARResource",
+      "projection": "ARResourceL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r resource attribute",
+  "name": "NIBGARResourceAttributeE",
+  "className": "ARResourceAttributeE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-resource-attribute",
+      "modelProjection": "ARResourceAttributeE"
+    }
+  ]
+}

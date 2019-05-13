@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Active resource",
+  "name": "ActiveResourceE",
+  "className": "ActiveResourceE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "active-resource",
+      "modelProjection": "ActiveResourceE"
+    }
+  ]
+}

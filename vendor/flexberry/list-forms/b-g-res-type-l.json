@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "b-g-res-type-e",
+  "editForm": "b-g-res-type-e",
+  "caption": "Res type",
+  "name": "BGResTypeL",
+  "className": "ResTypeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-res-type",
+      "modelProjection": "ResTypeL"
+    }
+  ]
+}

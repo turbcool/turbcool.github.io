@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ResourceType",
+      "projection": "ResourceTypeL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "Resource",
+  "name": "ResourceE",
+  "className": "ResourceE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "resource",
+      "modelProjection": "ResourceE"
+    }
+  ]
+}

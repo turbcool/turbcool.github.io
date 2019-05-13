@@ -1,0 +1,91 @@
+﻿{
+  "name": "BGResType",
+  "modelName": "b-g-res-type",
+  "className": "ResType",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "code",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "keyname",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ResTypeE",
+      "modelName": "b-g-res-type",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Код",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "keyname",
+          "caption": "Ключ имя",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "Название типа ресурса",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    },
+    {
+      "name": "ResTypeL",
+      "modelName": "b-g-res-type",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Код",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "keyname",
+          "caption": "Ключ имя",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "Название типа ресурса",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

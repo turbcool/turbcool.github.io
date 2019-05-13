@@ -1,0 +1,30 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Process",
+      "projection": "ProcessL",
+      "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Resource",
+      "projection": "ResourceL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "Resource process",
+  "name": "BGResourceProcessE",
+  "className": "ResourceProcessE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-resource-process",
+      "modelProjection": "ResourceProcessE"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ResType",
+      "projection": "ResTypeL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "Resource",
+  "name": "BGResourceE",
+  "className": "ResourceE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-resource",
+      "modelProjection": "ResourceE"
+    }
+  ]
+}

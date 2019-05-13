@@ -1,0 +1,87 @@
+<h3 class="ui header">{{t 'forms.n-i-b-g-a-r-in-operation-e.caption'}}</h3>
+
+<form class="ui form flexberry-vertical-form" role="form">
+  {{flexberry-error error=error}}
+  <div class="field">
+    <div class="sixteen wide">
+      {{flexberry-validationsummary errors=model.errors}}
+    </div>
+  </div>
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      {{#unless readonly}}
+        <button type="submit" class="ui button save-button" {{action 'save'}}>
+          {{t "forms.edit-form.save-button-text"}}
+        </button>
+        {{#unless model.isNew}}
+          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
+            {{t "forms.edit-form.delete-button-text"}}
+          </button>
+        {{/unless}}
+      {{/unless}}
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="field">
+  <label>{{t 'forms.n-i-b-g-a-r-in-operation-e.activeResource-caption'}}</label>
+  {{
+    flexberry-lookup
+    choose='showLookupDialog'
+    remove='removeLookupValue'
+    value=model.activeResource
+    
+    relationName='activeResource'
+    projection='ActiveResourceL'
+    title=(t 'forms.n-i-b-g-a-r-in-operation-e.activeResource-caption')
+    readonly=readonly
+    componentName="activeResourceLookup"
+  }}
+  {{flexberry-validationmessage error=model.errors.activeResource pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=true
+    required=true
+    value=model.activeResource.code
+    class=(if model.errors.activeResource.code 'error' '')
+    label=(t 'forms.n-i-b-g-a-r-in-operation-e.activeResource.code-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.activeResource.code pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.n-i-b-g-a-r-in-operation-e.operation-caption'}}</label>
+  {{
+    flexberry-lookup
+    choose='showLookupDialog'
+    remove='removeLookupValue'
+    value=model.operation
+    
+    relationName='operation'
+    projection='OperationL'
+    title=(t 'forms.n-i-b-g-a-r-in-operation-e.operation-caption')
+    readonly=readonly
+    componentName="operationLookup"
+  }}
+  {{flexberry-validationmessage error=model.errors.operation pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=true
+    required=true
+    value=model.operation.code
+    class=(if model.errors.operation.code 'error' '')
+    label=(t 'forms.n-i-b-g-a-r-in-operation-e.operation.code-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.operation.code pointing="pointing"}}
+</div>
+
+</form>

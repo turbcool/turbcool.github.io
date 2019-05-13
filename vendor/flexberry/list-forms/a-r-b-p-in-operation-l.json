@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "a-r-b-p-in-operation-e",
+  "editForm": "a-r-b-p-in-operation-e",
+  "caption": "A r b p in operation",
+  "name": "ARBPInOperationL",
+  "className": "ARBPInOperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-b-p-in-operation",
+      "modelProjection": "ARBPInOperationL"
+    }
+  ]
+}

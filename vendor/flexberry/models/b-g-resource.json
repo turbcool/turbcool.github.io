@@ -1,0 +1,155 @@
+﻿{
+  "name": "BGResource",
+  "modelName": "b-g-resource",
+  "className": "Resource",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "code",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "keyname",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "resType",
+      "relatedTo": "b-g-res-type",
+      "inverse": null
+    }
+  ],
+  "hasMany": [
+    {
+      "name": "attribute",
+      "relatedTo": "b-g-attribute",
+      "inverse": "resource"
+    }
+  ],
+  "projections": [
+    {
+      "name": "ResourceE",
+      "modelName": "b-g-resource",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Код",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "keyname",
+          "caption": "Ключевое имя",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": "Name",
+          "lookupValueField": "name",
+          "relationName": "ResType",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Название типа ресурса",
+              "hidden": true,
+              "index": 4
+            }
+          ],
+          "index": 3,
+          "caption": "Тип ресурса",
+          "name": "resType",
+          "relatedTo": "b-g-res-type",
+          "inverse": null
+        }
+      ],
+      "hasMany": [
+        {
+          "projectionName": "AttributeE",
+          "caption": "Attribute",
+          "name": "attribute",
+          "relatedTo": "b-g-attribute",
+          "inverse": null
+        }
+      ]
+    },
+    {
+      "name": "ResourceL",
+      "modelName": "b-g-resource",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Код",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "keyname",
+          "caption": "Ключ имя",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "name",
+          "caption": "Название",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ResType",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Тип ресурса",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": -1,
+          "caption": "Тип ресурса",
+          "name": "resType",
+          "relatedTo": "b-g-res-type",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

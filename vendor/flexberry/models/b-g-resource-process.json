@@ -1,0 +1,125 @@
+﻿{
+  "name": "BGResourceProcess",
+  "modelName": "b-g-resource-process",
+  "className": "ResourceProcess",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "process",
+      "relatedTo": "b-g-process",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "resource",
+      "relatedTo": "b-g-resource",
+      "inverse": null
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ResourceProcessE",
+      "modelName": "b-g-resource-process",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Process",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": 0,
+          "caption": "Process",
+          "name": "process",
+          "relatedTo": "b-g-process",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Resource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": 2,
+          "caption": "Resource",
+          "name": "resource",
+          "relatedTo": "b-g-resource",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ResourceProcessL",
+      "modelName": "b-g-resource-process",
+      "attrs": [],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Process",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 0
+            }
+          ],
+          "index": -1,
+          "caption": "Code",
+          "name": "process",
+          "relatedTo": "b-g-process",
+          "inverse": null
+        },
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Resource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 1
+            }
+          ],
+          "index": -1,
+          "caption": "Code",
+          "name": "resource",
+          "relatedTo": "b-g-resource",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

@@ -1,0 +1,121 @@
+﻿{
+  "name": "BGOperation",
+  "modelName": "b-g-operation",
+  "className": "Operation",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "order",
+      "type": "number",
+      "flexberryType": "int",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "formula",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "process",
+      "relatedTo": "b-g-process",
+      "inverse": "operation"
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "OperationE",
+      "modelName": "b-g-operation",
+      "attrs": [
+        {
+          "name": "order",
+          "caption": "Порядковый номер выполнения",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "formula",
+          "caption": "Применяемая формула",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": "Name",
+          "lookupValueField": "name",
+          "relationName": "Process",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Название процесса",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": 2,
+          "caption": "Связанный процесс",
+          "name": "process",
+          "relatedTo": "b-g-process",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "OperationL",
+      "modelName": "b-g-operation",
+      "attrs": [
+        {
+          "name": "order",
+          "caption": "Порядковый номер выполнения",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "formula",
+          "caption": "Применяемая формула",
+          "hidden": false,
+          "index": 1
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "Process",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "name",
+              "caption": "Связанный процесс",
+              "hidden": false,
+              "index": 2
+            }
+          ],
+          "index": -1,
+          "caption": "Связанный процесс",
+          "name": "process",
+          "relatedTo": "b-g-process",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

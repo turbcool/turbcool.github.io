@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "resource-in-operation-e",
+  "editForm": "resource-in-operation-e",
+  "caption": "Resource in operation",
+  "name": "ResourceInOperationL",
+  "className": "ResourceInOperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "resource-in-operation",
+      "modelProjection": "ResourceInOperationL"
+    }
+  ]
+}

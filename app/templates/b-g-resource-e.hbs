@@ -1,0 +1,99 @@
+<h3 class="ui header">{{t 'forms.b-g-resource-e.caption'}}</h3>
+
+<form class="ui form flexberry-vertical-form" role="form">
+  {{flexberry-error error=error}}
+  <div class="field">
+    <div class="sixteen wide">
+      {{flexberry-validationsummary errors=model.errors}}
+    </div>
+  </div>
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      {{#unless readonly}}
+        <button type="submit" class="ui button save-button" {{action 'save'}}>
+          {{t "forms.edit-form.save-button-text"}}
+        </button>
+        {{#unless model.isNew}}
+          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
+            {{t "forms.edit-form.delete-button-text"}}
+          </button>
+        {{/unless}}
+      {{/unless}}
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.code
+    class=(if model.errors.code 'error' '')
+    label=(t 'forms.b-g-resource-e.code-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.code pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.keyname
+    class=(if model.errors.keyname 'error' '')
+    label=(t 'forms.b-g-resource-e.keyname-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.keyname pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=readonly
+    required=true
+    value=model.name
+    class=(if model.errors.name 'error' '')
+    label=(t 'forms.b-g-resource-e.name-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.name pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.b-g-resource-e.resType-caption'}}</label>
+  {{
+    flexberry-lookup
+    choose='showLookupDialog'
+    remove='removeLookupValue'
+    value=model.resType
+    displayAttributeName='name'
+    autocomplete=true
+    relationName='resType'
+    projection='ResTypeL'
+    title=(t 'forms.b-g-resource-e.resType-caption')
+    readonly=readonly
+    componentName="resTypeLookup"
+  }}
+  {{flexberry-validationmessage error=model.errors.resType pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.b-g-resource-e.attribute-caption'}}</label>
+  {{
+    flexberry-groupedit
+    componentName="attributeGroupEdit"
+    mainModelProjection=modelProjection
+    modelProjection=modelProjection.attributes.attribute
+    content=model.attribute
+    readonly=readonly
+    orderable=false
+    class=(if model.errors.attribute 'error' '')
+  }}
+  {{flexberry-validationmessage error=model.errors.attribute pointing="pointing"}}
+</div>
+
+</form>

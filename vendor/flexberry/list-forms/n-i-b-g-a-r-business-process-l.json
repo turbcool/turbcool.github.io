@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-a-r-business-process-e",
+  "editForm": "n-i-b-g-a-r-business-process-e",
+  "caption": "A r business process",
+  "name": "NIBGARBusinessProcessL",
+  "className": "ARBusinessProcessL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-business-process",
+      "modelProjection": "ARBusinessProcessL"
+    }
+  ]
+}

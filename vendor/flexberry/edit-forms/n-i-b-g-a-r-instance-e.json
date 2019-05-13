@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ActiveResource",
+      "projection": "ActiveResourceL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r instance",
+  "name": "NIBGARInstanceE",
+  "className": "ARInstanceE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-instance",
+      "modelProjection": "ARInstanceE"
+    }
+  ]
+}

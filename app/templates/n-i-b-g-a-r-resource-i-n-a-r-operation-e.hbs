@@ -1,0 +1,87 @@
+<h3 class="ui header">{{t 'forms.n-i-b-g-a-r-resource-i-n-a-r-operation-e.caption'}}</h3>
+
+<form class="ui form flexberry-vertical-form" role="form">
+  {{flexberry-error error=error}}
+  <div class="field">
+    <div class="sixteen wide">
+      {{flexberry-validationsummary errors=model.errors}}
+    </div>
+  </div>
+  <div class="field">
+    <div class="flexberry-edit-panel">
+      {{#unless readonly}}
+        <button type="submit" class="ui button save-button" {{action 'save'}}>
+          {{t "forms.edit-form.save-button-text"}}
+        </button>
+        {{#unless model.isNew}}
+          <button type="submit" class="ui button save-del-button" {{action 'delete'}}>
+            {{t "forms.edit-form.delete-button-text"}}
+          </button>
+        {{/unless}}
+      {{/unless}}
+      <button type="submit" class="ui button close-button" {{action 'close'}}>
+        {{t "forms.edit-form.close-button-text"}}
+      </button>
+    </div>
+  </div>
+  <div class="field">
+  <label>{{t 'forms.n-i-b-g-a-r-resource-i-n-a-r-operation-e.aRResource-caption'}}</label>
+  {{
+    flexberry-lookup
+    choose='showLookupDialog'
+    remove='removeLookupValue'
+    value=model.aRResource
+    
+    relationName='aRResource'
+    projection='ARResourceL'
+    title=(t 'forms.n-i-b-g-a-r-resource-i-n-a-r-operation-e.aRResource-caption')
+    readonly=readonly
+    componentName="aRResourceLookup"
+  }}
+  {{flexberry-validationmessage error=model.errors.aRResource pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=true
+    required=true
+    value=model.aRResource.name
+    class=(if model.errors.aRResource.name 'error' '')
+    label=(t 'forms.n-i-b-g-a-r-resource-i-n-a-r-operation-e.aRResource.name-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.aRResource.name pointing="pointing"}}
+</div>
+
+<div class="field">
+  <label>{{t 'forms.n-i-b-g-a-r-resource-i-n-a-r-operation-e.aROperation-caption'}}</label>
+  {{
+    flexberry-lookup
+    choose='showLookupDialog'
+    remove='removeLookupValue'
+    value=model.aROperation
+    
+    relationName='aROperation'
+    projection='AROperationL'
+    title=(t 'forms.n-i-b-g-a-r-resource-i-n-a-r-operation-e.aROperation-caption')
+    readonly=readonly
+    componentName="aROperationLookup"
+  }}
+  {{flexberry-validationmessage error=model.errors.aROperation pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=true
+    required=true
+    value=model.aROperation.name
+    class=(if model.errors.aROperation.name 'error' '')
+    label=(t 'forms.n-i-b-g-a-r-resource-i-n-a-r-operation-e.aROperation.name-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.aROperation.name pointing="pointing"}}
+</div>
+
+</form>

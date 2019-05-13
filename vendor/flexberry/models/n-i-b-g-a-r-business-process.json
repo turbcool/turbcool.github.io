@@ -1,0 +1,148 @@
+﻿{
+  "name": "NIBGARBusinessProcess",
+  "modelName": "n-i-b-g-a-r-business-process",
+  "className": "ARBusinessProcess",
+  "parentModelName": null,
+  "parentClassName": null,
+  "attrs": [
+    {
+      "name": "code",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    },
+    {
+      "name": "lSA",
+      "type": "string",
+      "flexberryType": "string",
+      "notNull": false,
+      "defaultValue": "",
+      "stored": true
+    }
+  ],
+  "belongsTo": [
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "activeResource",
+      "relatedTo": "n-i-b-g-active-resource",
+      "inverse": null
+    },
+    {
+      "polymorphic": false,
+      "presence": true,
+      "name": "aRInstance",
+      "relatedTo": "n-i-b-g-a-r-instance",
+      "inverse": null
+    }
+  ],
+  "hasMany": [],
+  "projections": [
+    {
+      "name": "ARBusinessProcessE",
+      "modelName": "n-i-b-g-a-r-business-process",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Code",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "lSA",
+          "caption": "LSA",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ActiveResource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 4
+            }
+          ],
+          "index": 3,
+          "caption": "Active resource",
+          "name": "activeResource",
+          "relatedTo": "n-i-b-g-active-resource",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    },
+    {
+      "name": "ARBusinessProcessL",
+      "modelName": "n-i-b-g-a-r-business-process",
+      "attrs": [
+        {
+          "name": "code",
+          "caption": "Code",
+          "hidden": false,
+          "index": 0
+        },
+        {
+          "name": "name",
+          "caption": "Name",
+          "hidden": false,
+          "index": 1
+        },
+        {
+          "name": "lSA",
+          "caption": "LSA",
+          "hidden": false,
+          "index": 2
+        }
+      ],
+      "belongsTo": [
+        {
+          "lookupValue": null,
+          "lookupValueField": null,
+          "relationName": "ActiveResource",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "Code",
+              "hidden": false,
+              "index": 3
+            }
+          ],
+          "index": -1,
+          "caption": "Code",
+          "name": "activeResource",
+          "relatedTo": "n-i-b-g-active-resource",
+          "inverse": null
+        }
+      ],
+      "hasMany": []
+    }
+  ],
+  "stored": true,
+  "offline": true
+}

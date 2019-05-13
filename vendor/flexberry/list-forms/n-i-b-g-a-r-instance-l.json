@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-a-r-instance-e",
+  "editForm": "n-i-b-g-a-r-instance-e",
+  "caption": "A r instance",
+  "name": "NIBGARInstanceL",
+  "className": "ARInstanceL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-instance",
+      "modelProjection": "ARInstanceL"
+    }
+  ]
+}

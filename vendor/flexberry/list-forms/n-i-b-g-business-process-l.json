@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-business-process-e",
+  "editForm": "n-i-b-g-business-process-e",
+  "caption": "Business process",
+  "name": "NIBGBusinessProcessL",
+  "className": "BusinessProcessL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-business-process",
+      "modelProjection": "BusinessProcessL"
+    }
+  ]
+}

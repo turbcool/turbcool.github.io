@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Business process",
+  "name": "BusinessProcessE",
+  "className": "BusinessProcessE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "business-process",
+      "modelProjection": "BusinessProcessE"
+    }
+  ]
+}

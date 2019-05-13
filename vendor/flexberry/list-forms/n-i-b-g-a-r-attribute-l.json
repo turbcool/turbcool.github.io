@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-a-r-attribute-e",
+  "editForm": "n-i-b-g-a-r-attribute-e",
+  "caption": "A r attribute",
+  "name": "NIBGARAttributeL",
+  "className": "ARAttributeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-attribute",
+      "modelProjection": "ARAttributeL"
+    }
+  ]
+}

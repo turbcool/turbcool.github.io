@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "b-g-operation-e",
+  "editForm": "b-g-operation-e",
+  "caption": "Operation",
+  "name": "BGOperationL",
+  "className": "OperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-operation",
+      "modelProjection": "OperationL"
+    }
+  ]
+}

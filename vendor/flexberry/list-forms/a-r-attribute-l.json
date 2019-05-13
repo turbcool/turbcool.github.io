@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "a-r-attribute-e",
+  "editForm": "a-r-attribute-e",
+  "caption": "A r attribute",
+  "name": "ARAttributeL",
+  "className": "ARAttributeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-attribute",
+      "modelProjection": "ARAttributeL"
+    }
+  ]
+}

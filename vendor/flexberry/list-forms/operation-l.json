@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "operation-e",
+  "editForm": "operation-e",
+  "caption": "Operation",
+  "name": "OperationL",
+  "className": "OperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "operation",
+      "modelProjection": "OperationL"
+    }
+  ]
+}

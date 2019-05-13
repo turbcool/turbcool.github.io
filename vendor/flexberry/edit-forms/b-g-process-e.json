@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "Operation.Process",
+      "projection": "ProcessL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "Process",
+  "name": "BGProcessE",
+  "className": "ProcessE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-process",
+      "modelProjection": "ProcessE"
+    }
+  ]
+}

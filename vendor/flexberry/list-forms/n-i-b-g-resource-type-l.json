@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-resource-type-e",
+  "editForm": "n-i-b-g-resource-type-e",
+  "caption": "Resource type",
+  "name": "NIBGResourceTypeL",
+  "className": "ResourceTypeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-resource-type",
+      "modelProjection": "ResourceTypeL"
+    }
+  ]
+}

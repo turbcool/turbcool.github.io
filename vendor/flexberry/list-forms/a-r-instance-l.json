@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "a-r-instance-e",
+  "editForm": "a-r-instance-e",
+  "caption": "A r instance",
+  "name": "ARInstanceL",
+  "className": "ARInstanceL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-instance",
+      "modelProjection": "ARInstanceL"
+    }
+  ]
+}

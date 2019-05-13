@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "b-g-resource-e",
+  "editForm": "b-g-resource-e",
+  "caption": "Resource",
+  "name": "BGResourceL",
+  "className": "ResourceL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "b-g-resource",
+      "modelProjection": "ResourceL"
+    }
+  ]
+}

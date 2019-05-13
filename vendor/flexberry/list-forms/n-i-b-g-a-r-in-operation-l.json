@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-a-r-in-operation-e",
+  "editForm": "n-i-b-g-a-r-in-operation-e",
+  "caption": "A r in operation",
+  "name": "NIBGARInOperationL",
+  "className": "ARInOperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-a-r-in-operation",
+      "modelProjection": "ARInOperationL"
+    }
+  ]
+}

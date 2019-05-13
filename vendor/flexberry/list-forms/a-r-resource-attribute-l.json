@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "a-r-resource-attribute-e",
+  "editForm": "a-r-resource-attribute-e",
+  "caption": "A r resource attribute",
+  "name": "ARResourceAttributeL",
+  "className": "ARResourceAttributeL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-resource-attribute",
+      "modelProjection": "ARResourceAttributeL"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ARResource",
+      "projection": "ARResourceL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r resource type",
+  "name": "ARResourceTypeE",
+  "className": "ARResourceTypeE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-resource-type",
+      "modelProjection": "ARResourceTypeE"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+﻿{
+  "propertyLookup": [],
+  "caption": "Resource type",
+  "name": "ResourceTypeE",
+  "className": "ResourceTypeE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "resource-type",
+      "modelProjection": "ResourceTypeE"
+    }
+  ]
+}

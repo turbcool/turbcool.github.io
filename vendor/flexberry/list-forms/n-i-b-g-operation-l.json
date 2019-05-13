@@ -1,0 +1,14 @@
+﻿{
+  "newForm": "n-i-b-g-operation-e",
+  "editForm": "n-i-b-g-operation-e",
+  "caption": "Operation",
+  "name": "NIBGOperationL",
+  "className": "OperationL",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "n-i-b-g-operation",
+      "modelProjection": "OperationL"
+    }
+  ]
+}

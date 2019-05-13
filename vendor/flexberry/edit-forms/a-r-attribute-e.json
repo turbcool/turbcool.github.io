@@ -1,0 +1,22 @@
+﻿{
+  "propertyLookup": [
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ActiveResource",
+      "projection": "ActiveResourceL",
+      "detailModelName": null
+    }
+  ],
+  "caption": "A r attribute",
+  "name": "ARAttributeE",
+  "className": "ARAttributeE",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "a-r-attribute",
+      "modelProjection": "ARAttributeE"
+    }
+  ]
+}
