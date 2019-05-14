@@ -1,9 +1,26 @@
 <div class="ui stackable custom grid">
     <div class="row">
-        {{time}}
+        Игрвовое время: {{time}} часов
     </div>
     <div class="row">
         <button class="ui button" {{action "startProcess"}}>Запустить процесс</button>
+    </div>
+
+
+    <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Выберите игровой ресурс:
+        </div>
+        <div class="content">
+            <div class="ui stackable custom grid">
+                {{#each userChoice as |item|}}
+                <div class="row">
+                    {{project-plan resource=item choice='choice'}}
+                </div>
+                {{/each}}
+            </div>
+        </div>
     </div>
 
     {{#if debugMode}}
