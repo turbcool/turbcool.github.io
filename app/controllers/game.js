@@ -76,8 +76,9 @@ export default Ember.Controller.extend({
 
     startOperation(code) {
         let self = this;
-        this.loadOperation(code).then((operation) => {
+        return this.loadOperation(code).then((operation) => {
             let duration = operation.get('duration');
+            let time = self.get('time');
             self.set('time', time + duration);
         });
     },
@@ -128,9 +129,9 @@ export default Ember.Controller.extend({
 
     startAROperation(code) {
         let self = this;
-        let time = this.get('time');
         return this.loadAROperation(code).then((operation) => {
             let duration = operation.get('duration');
+            let time = self.get('time');
             self.set('time', time + duration);
         });
     },
@@ -375,14 +376,37 @@ export default Ember.Controller.extend({
                 }
                 break;
             case 'choice':
+                //В этот момент интерпретатор стоит на знаке ^
                 let condition = command.value;
                 this.askForChoice().then((chosenResources) => {
                     let correct = self.checkUserChoice(chosenResources, condition);
-                    if (!correct) {
-                        pos++;
-                        //Skip number:
-                        while (this.isNumber(lsa.charAt(pos))) {
+                    while (!correct) {
+                        if (!correct)
                             pos++;
+                        //pR1^1 pR2^2 pR3^3 .1 sARP1sARP2sARP3 w^4 .2 sARP4sARP5sARP6 w^4 .3 sARP7sARP8sARP9 w^4 .4 F
+                        //Skip number:
+                        while (this.isNumber(lsa.charAt(pos)) || lsa.charAt(pos) === ' ') {
+                            pos++;
+                        }
+
+                        if (lsa.charAt(pos) === 'p') {
+                            pos++;
+
+                            //Extract condition (for ex. R1R2R3):
+                            condition = '';
+                            while (lsa.charAt(pos) === 'R' || this.isNumber(lsa.charAt(pos))) {
+                                condition += lsa.charAt(pos);
+                                pos++;
+                            }
+                            correct = self.checkUserChoice(chosenResources, condition);
+                            //Если верно, запускаем символ ^.
+                            //Если неверно, цикл повторится
+                        }
+                        else if (lsa.charAt(pos) === 'w') {
+                            correct = true;
+                        }
+                        else {
+                            correct = true;
                         }
                     }
                     this.nextLSACommand(lsa, pos);
@@ -433,54 +457,7 @@ export default Ember.Controller.extend({
         this.nextLSACommand(lsa, pos);
     },
 
-    tick() {
-        var self = this;
-        var tasks = this.get('tasks');
-
-        tasks.get('firstObject').tick();
-
-        tasks.forEach(function (task) {
-            var cost_remaining = task.getAttrValue('cost_remaining');
-
-            var selectedWorker = task.get('selectedWorker');
-            var w = self.getSelectedWorker(selectedWorker);
-            var skill = w.getAttrValue('skill_prog');
-
-            var newValue = cost_remaining - 3 * skill;
-
-            task.setAttrValue('cost_remaining', newValue);
-        });
-        this.get('workers').forEach(function (worker) {
-            var budget = self.get('budgets').get('firstObject');
-            var newValue = budget.getAttrValue('amount') - 50;
-            budget.setAttrValue('amount', newValue);
-        });
-        var newDate = Moment(self.get('time'), "DD-MM-YYYY").add('days', 1).format("DD-MM-YYYY");
-        self.set('time', newDate);
-    },
-
-    loadScenario() {
-        //Парсить scenario.xml
-        //Спарсить объекты типа Process
-        //Добавить Process в store
-
-        //Другие объекты смогут работать с Process
-    },
-
     actions: {
-
-        simulate() {
-            var self = this;
-
-            this.simulateProcess();
-            return;
-            //Запустить сценарий
-
-            var ticks = this.get('ticks');
-            for (var i = 0; i < ticks; i++) {
-                this.tick();
-            }
-        },
 
         startProcess() {
             let self = this;
