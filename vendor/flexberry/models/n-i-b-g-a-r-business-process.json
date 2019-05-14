@@ -91,6 +91,26 @@
           "name": "activeResource",
           "relatedTo": "n-i-b-g-active-resource",
           "inverse": null
+        },
+        {
+          "lookupValue": "Code",
+          "lookupValueField": "code",
+          "relationName": "ARInstance",
+          "belongsTo": [],
+          "hidden": false,
+          "attrs": [
+            {
+              "name": "code",
+              "caption": "",
+              "hidden": false,
+              "index": 6
+            }
+          ],
+          "index": 5,
+          "caption": "Instance",
+          "name": "aRInstance",
+          "relatedTo": "n-i-b-g-a-r-instance",
+          "inverse": null
         }
       ],
       "hasMany": []

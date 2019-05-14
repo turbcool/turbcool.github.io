@@ -93,4 +93,35 @@
   {{flexberry-validationmessage error=model.errors.activeResource.code pointing="pointing"}}
 </div>
 
+<div class="field">
+  <label>{{t 'forms.n-i-b-g-a-r-business-process-e.aRInstance-caption'}}</label>
+  {{
+    flexberry-lookup
+    choose='showLookupDialog'
+    remove='removeLookupValue'
+    value=model.aRInstance
+    displayAttributeName='code'
+    autocomplete=true
+    relationName='aRInstance'
+    projection='ARInstanceL'
+    title=(t 'forms.n-i-b-g-a-r-business-process-e.aRInstance-caption')
+    readonly=readonly
+    componentName="aRInstanceLookup"
+  }}
+  {{flexberry-validationmessage error=model.errors.aRInstance pointing="pointing"}}
+</div>
+
+<div class="field">
+  {{
+    flexberry-field
+    placeholder=(t 'components.flexberry-field.placeholder')
+    readonly=true
+    required=true
+    value=model.aRInstance.code
+    class=(if model.errors.aRInstance.code 'error' '')
+    label=(t 'forms.n-i-b-g-a-r-business-process-e.aRInstance.code-caption')
+  }}
+  {{flexberry-validationmessage error=model.errors.aRInstance.code pointing="pointing"}}
+</div>
+
 </form>

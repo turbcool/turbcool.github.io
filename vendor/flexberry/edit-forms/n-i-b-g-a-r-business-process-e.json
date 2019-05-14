@@ -7,6 +7,14 @@
       "relationName": "ActiveResource",
       "projection": "ActiveResourceL",
       "detailModelName": null
+    },
+    {
+      "master": null,
+      "displayAttributeName": null,
+      "required": false,
+      "relationName": "ARInstance",
+      "projection": "ARInstanceL",
+      "detailModelName": null
     }
   ],
   "caption": "A r business process",

@@ -4,5 +4,7 @@ export default {
   'name-caption': 'Name',
   'lSA-caption': 'LSA',
   'activeResource.code-caption': 'Code',
-  'activeResource-caption': 'Active resource'
+  'aRInstance.code-caption': '',
+  'activeResource-caption': 'Active resource',
+  'aRInstance-caption': 'Instance'
 };

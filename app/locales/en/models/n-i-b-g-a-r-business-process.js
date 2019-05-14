@@ -15,6 +15,12 @@ export default {
         code: {
           __caption__: 'code'
         }
+      },
+      aRInstance: {
+        __caption__: 'aRInstance',
+        code: {
+          __caption__: 'code'
+        }
       }
     },
     ARBusinessProcessL: {

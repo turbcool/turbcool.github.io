@@ -28,7 +28,10 @@ export let defineProjections = function (modelClass) {
     lSA: Projection.attr('LSA'),
     activeResource: Projection.belongsTo('n-i-b-g-active-resource', 'Active resource', {
       code: Projection.attr('Code')
-    })
+    }),
+    aRInstance: Projection.belongsTo('n-i-b-g-a-r-instance', 'Instance', {
+      code: Projection.attr('')
+    }, { displayMemberPath: 'code' })
   });
   modelClass.defineProjection('ARBusinessProcessL', 'n-i-b-g-a-r-business-process', {
     code: Projection.attr('Code'),
