@@ -2572,4 +2572,617 @@ declare module 'ember' {
       '@each': any;
       /**
        * Helper method returns the first object from a collection. This is usually used by bindings and other parts of the framework to extract a single object if the enumerable contains only one item.
-      
+       */
+      firstObject: any;
+      /**
+       * Helper method returns the last object from a collection. If your enumerable contains only one object, this method should always return that object. If your enumerable is empty, this method should return `undefined`.
+       */
+      lastObject: any;
+      /**
+       * Returns `true` if the passed object can be found in the receiver. The default version will iterate through the enumerable until the object is found. You may want to override this with a more efficient version.
+       */
+      contains(obj: {}): boolean;
+      /**
+       * Iterates through the enumerable, calling the passed function on each item. This method corresponds to the `forEach()` method defined in JavaScript 1.6.
+       */
+      forEach(callback: Function, target: {}): {};
+      /**
+       * Alias for `mapBy`
+       */
+      getEach(key: string): Ember.Array;
+      /**
+       * Sets the value on the named property for each member. This is more efficient than using other methods defined on this helper. If the object implements Ember.Observable, the value will be changed to `set(),` otherwise it will be set directly. `null` objects are skipped.
+       */
+      setEach(key: string, value: {}): {};
+      /**
+       * Maps all of the items in the enumeration to another value, returning a new array. This method corresponds to `map()` defined in JavaScript 1.6.
+       */
+      map(callback: Function, target: {}): Ember.Array;
+      /**
+       * Similar to map, this specialized function returns the value of the named property on all items in the enumeration.
+       */
+      mapBy(key: string): Ember.Array;
+      /**
+       * Returns an array with all of the items in the enumeration that the passed function returns true for. This method corresponds to `filter()` defined in JavaScript 1.6.
+       */
+      filter(callback: Function, target: {}): Ember.Array;
+      /**
+       * Returns an array with all of the items in the enumeration where the passed function returns false. This method is the inverse of filter().
+       */
+      reject(callback: Function, target: {}): Ember.Array;
+      /**
+       * Returns an array with just the items with the matched property. You can pass an optional second argument with the target value. Otherwise this will match any property that evaluates to `true`.
+       */
+      filterBy(key: string, value: any): Ember.Array;
+      /**
+       * Returns an array with the items that do not have truthy values for key.  You can pass an optional second argument with the target value.  Otherwise this will match any property that evaluates to false.
+       */
+      rejectBy(key: string, value: string): Ember.Array;
+      /**
+       * Returns the first item in the array for which the callback returns true. This method works similar to the `filter()` method defined in JavaScript 1.6 except that it will stop working on the array once a match is found.
+       */
+      find(callback: Function, target: {}): {};
+      /**
+       * Returns the first item with a property matching the passed value. You can pass an optional second argument with the target value. Otherwise this will match any property that evaluates to `true`.
+       */
+      findBy(key: string, value: string): {};
+      /**
+       * Returns `true` if the passed function returns true for every item in the enumeration. This corresponds with the `every()` method in JavaScript 1.6.
+       */
+      every(callback: Function, target: {}): boolean;
+      /**
+       * Returns `true` if the passed property resolves to the value of the second argument for all items in the enumerable. This method is often simpler/faster than using a callback.
+       */
+      isEvery(key: string, value: string): boolean;
+      /**
+       * Returns `true` if the passed function returns true for any item in the enumeration. This corresponds with the `some()` method in JavaScript 1.6.
+       */
+      any(callback: Function, target: {}): boolean;
+      /**
+       * Returns `true` if the passed property resolves to the value of the second argument for any item in the enumerable. This method is often simpler/faster than using a callback.
+       */
+      isAny(key: string, value: string): boolean;
+      /**
+       * This will combine the values of the enumerator into a single value. It is a useful way to collect a summary value from an enumeration. This corresponds to the `reduce()` method defined in JavaScript 1.8.
+       */
+      reduce(callback: Function, initialValue: {}, reducerProperty: string): {};
+      /**
+       * Invokes the named method on every object in the receiver that implements it. This method corresponds to the implementation in Prototype 1.6.
+       */
+      invoke(methodName: string, ...args: any[]): Ember.Array;
+      /**
+       * Simply converts the enumerable into a genuine array. The order is not guaranteed. Corresponds to the method implemented by Prototype.
+       */
+      toArray(): Ember.Array;
+      /**
+       * Returns a copy of the array with all `null` and `undefined` elements removed.
+       */
+      compact(): Ember.Array;
+      /**
+       * Returns a new enumerable that excludes the passed value. The default implementation returns an array regardless of the receiver type unless the receiver does not contain the value.
+       */
+      without(value: {}): Enumerable;
+      /**
+       * Returns a new enumerable that contains only unique values. The default implementation returns an array regardless of the receiver type.
+       */
+      uniq(): Enumerable;
+      /**
+       * Converts the enumerable into an array and sorts by the keys specified in the argument.
+       */
+      sortBy(property: string): Ember.Array;
+      /**
+       * Adds each object in the passed enumerable to the receiver.
+       */
+      addObjects(objects: Enumerable): {};
+      /**
+       * Removes each object in the passed enumerable from the receiver.
+       */
+      removeObjects(objects: Enumerable): {};
+      /**
+       * Retrieves the value of a property from the object.
+       */
+      get(keyName: string): {};
+      /**
+       * To get the values of multiple properties at once, call `getProperties` with a list of strings or an array:
+       */
+      getProperties(...list: string[]): {};
+      /**
+       * Sets the provided key or path to the value.
+       */
+      set(keyName: string, value: {}): {};
+      /**
+       * Sets a list of properties at once. These properties are set inside a single `beginPropertyChanges` and `endPropertyChanges` batch, so observers will be buffered.
+       */
+      setProperties(hash: {}): {};
+      /**
+       * Convenience method to call `propertyWillChange` and `propertyDidChange` in succession.
+       */
+      notifyPropertyChange(keyName: string): Observable;
+      /**
+       * Adds an observer on a property.
+       */
+      addObserver(key: string, target: {}, method: string|Function);
+      /**
+       * Remove an observer you have previously registered on this object. Pass the same key, target, and method you passed to `addObserver()` and your target will no longer receive notifications.
+       */
+      removeObserver(key: string, target: {}, method: string|Function);
+      /**
+       * Retrieves the value of a property, or a default value in the case that the property returns `undefined`.
+       */
+      getWithDefault(keyName: string, defaultValue: {}): {};
+      /**
+       * Set the value of a property to the current value plus some amount.
+       */
+      incrementProperty(keyName: string, increment: number): number;
+      /**
+       * Set the value of a property to the current value minus some amount.
+       */
+      decrementProperty(keyName: string, decrement: number): number;
+      /**
+       * Set the value of a boolean property to the opposite of its current value.
+       */
+      toggleProperty(keyName: string): boolean;
+      /**
+       * Returns the cached value of a computed property, if it exists. This allows you to inspect the value of a computed property without accidentally invoking it if it is intended to be generated lazily.
+       */
+      cacheFor(keyName: string): {};
+    }
+    /**
+     * `Ember.Object` is the main base class for all Ember objects. It is a subclass of `Ember.CoreObject` with the `Ember.Observable` mixin applied. For details, see the documentation for each of these.
+     */
+    export class Object extends CoreObject implements Observable {
+      /**
+       * Retrieves the value of a property from the object.
+       */
+      get(keyName: string): {};
+      /**
+       * To get the values of multiple properties at once, call `getProperties` with a list of strings or an array:
+       */
+      getProperties(...list: string[]): {};
+      /**
+       * Sets the provided key or path to the value.
+       */
+      set(keyName: string, value: {}): {};
+      /**
+       * Sets a list of properties at once. These properties are set inside a single `beginPropertyChanges` and `endPropertyChanges` batch, so observers will be buffered.
+       */
+      setProperties(hash: {}): {};
+      /**
+       * Convenience method to call `propertyWillChange` and `propertyDidChange` in succession.
+       */
+      notifyPropertyChange(keyName: string): Observable;
+      /**
+       * Adds an observer on a property.
+       */
+      addObserver(key: string, target: {}, method: string|Function);
+      /**
+       * Remove an observer you have previously registered on this object. Pass the same key, target, and method you passed to `addObserver()` and your target will no longer receive notifications.
+       */
+      removeObserver(key: string, target: {}, method: string|Function);
+      /**
+       * Retrieves the value of a property, or a default value in the case that the property returns `undefined`.
+       */
+      getWithDefault(keyName: string, defaultValue: {}): {};
+      /**
+       * Set the value of a property to the current value plus some amount.
+       */
+      incrementProperty(keyName: string, increment: number): number;
+      /**
+       * Set the value of a property to the current value minus some amount.
+       */
+      decrementProperty(keyName: string, decrement: number): number;
+      /**
+       * Set the value of a boolean property to the opposite of its current value.
+       */
+      toggleProperty(keyName: string): boolean;
+      /**
+       * Returns the cached value of a computed property, if it exists. This allows you to inspect the value of a computed property without accidentally invoking it if it is intended to be generated lazily.
+       */
+      cacheFor(keyName: string): {};
+    }
+    /**
+     * `Ember.ObjectProxy` forwards all properties not defined by the proxy itself to a proxied `content` object.
+     */
+    export class ObjectProxy {
+    }
+    export class Service extends Object {
+    }
+    export class _Metamorph {
+    }
+    export class _MetamorphView extends View implements _Metamorph {
+    }
+    /**
+     * An `Ember.Component` is a view that is completely isolated. Properties accessed in its templates go to the view object and actions are targeted at the view object. There is no access to the surrounding context or outer controller; all contextual information must be passed in.
+     */
+    export class Component extends View {
+      /**
+       * Calls a action passed to a component.
+       */
+      sendAction(action: string, params: any);
+      /**
+       * Returns true when the component was invoked with a block template.
+       */
+      hasBlock: any;
+      /**
+       * Returns true when the component was invoked with a block parameter supplied.
+       */
+      hasBlockParams: any;
+      /**
+       * Enables components to take a list of parameters as arguments
+       */
+      static positionalParams: any;
+    }
+    export class AriaRoleSupport {
+      /**
+       * The WAI-ARIA role of the control represented by this view. For example, a button may have a role of type 'button', or a pane may have a role of type 'alertdialog'. This property is used by assistive software to help visually challenged users navigate rich web applications.
+       */
+      ariaRole: string;
+    }
+    export class ClassNamesSupport {
+      /**
+       * Standard CSS class names to apply to the view's outer element. This property automatically inherits any class names defined by the view's superclasses as well.
+       */
+      classNames: Ember.Array;
+      /**
+       * A list of properties of the view to apply as class names. If the property is a string value, the value of that string will be applied as a class name.
+       */
+      classNameBindings: Ember.Array;
+    }
+    export class EmptyViewSupport {
+    }
+    export class InstrumentationSupport {
+      /**
+       * Used to identify this view during debugging
+       */
+      instrumentDisplay: string;
+    }
+    export class LegacyViewSupport {
+    }
+    export class TemplateRenderingSupport {
+    }
+    /**
+     * `TextSupport` is a shared mixin used by both `Ember.TextField` and `Ember.TextArea`. `TextSupport` adds a number of methods that allow you to specify a controller action to invoke when a certain event is fired on your text field or textarea. The specifed controller action would get the current value of the field passed in as the only argument unless the value of the field is empty. In that case, the instance of the field itself is passed in as the only argument.
+     */
+    export class TextSupport extends Mixin implements TargetActionSupport {
+    }
+    /**
+     * `Ember.ViewTargetActionSupport` is a mixin that can be included in a view class to add a `triggerAction` method with semantics similar to the Handlebars `{{action}}` helper. It provides intelligent defaults for the action's target: the view's controller; and the context that is sent with the action: the view's context.
+     */
+    export class ViewTargetActionSupport extends TargetActionSupport {
+      /**
+       * Renders the view again. This will work regardless of whether the view is already in the DOM or not. If the view is in the DOM, the rendering process will be deferred to give bindings a chance to synchronize.
+       */
+      rerender();
+      /**
+       * Returns the current DOM element for the view.
+       */
+      element: DOMElement;
+      /**
+       * Returns a jQuery object for this view's element. If you pass in a selector string, this method will return a jQuery object, using the current element as its buffer.
+       */
+      $(selector: string): JQuery;
+      /**
+       * The HTML `id` of the view's element in the DOM. You can provide this value yourself but it must be unique (just as in HTML):
+       */
+      elementId: string;
+      /**
+       * Tag name for the view's outer element. The tag name is only used when an element is first created. If you change the `tagName` for an element, you must destroy and recreate the view element.
+       */
+      tagName: string;
+      /**
+       * Normally, Ember's component model is "write-only". The component takes a bunch of attributes that it got passed in, and uses them to render its template.
+       */
+      readDOMAttr(name: string): void;
+    }
+    export class VisibilitySupport {
+      /**
+       * If `false`, the view will appear hidden in DOM.
+       */
+      isVisible: boolean;
+    }
+    /**
+     * `Ember.EventDispatcher` handles delegating browser events to their corresponding `Ember.Views.` For example, when you click on a view, `Ember.EventDispatcher` ensures that that view's `mouseDown` method gets called.
+     */
+    export class EventDispatcher extends Object {
+    }
+    /**
+     * The internal class used to create text inputs when the `{{input}}` helper is used with `type` of `checkbox`.
+     */
+    export class Checkbox extends Component {
+    }
+    /**
+     * `Ember.CollectionView` is an `Ember.View` descendent responsible for managing a collection (an array or array-like object) by maintaining a child view object and associated DOM representation for each item in the array and ensuring that child views and their associated rendered HTML are updated when items in the array are added, removed, or replaced.
+     */
+    export class CollectionView extends ContainerView implements EmptyViewSupport {
+    }
+    /**
+     * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-containerview
+     * A `ContainerView` is an `Ember.View` subclass that implements `Ember.MutableArray` allowing programmatic management of its child views.
+     */
+    export class ContainerView extends View {
+    }
+    /**
+     * DEPRECATED: Use `Ember.View` instead.
+     * `Ember.CoreView` is an abstract class that exists to give view-like behavior to both Ember's main view class `Ember.View` and other classes that don't need the fully functionaltiy of `Ember.View`.
+     */
+    export class CoreView extends Object implements Evented, ActionHandler {
+      /**
+       * DEPRECATED: Use `Ember.View` instead.
+       * Override the default event firing from `Ember.Evented` to also call methods with the given name.
+       */
+      trigger(name: string);
+      /**
+       * DEPRECATED: Use `Ember.View` instead.
+       * Subscribes to a named event with given function.
+       */
+      on(name: string, target: {}, method: Function): void;
+      /**
+       * DEPRECATED: Use `Ember.View` instead.
+       * Subscribes a function to a named event and then cancels the subscription after the first time the event is triggered. It is good to use ``one`` when you only care about the first time an event has taken place.
+       */
+      one(name: string, target: {}, method: Function): void;
+      /**
+       * DEPRECATED: Use `Ember.View` instead.
+       * Cancels subscription for given name, target, and method.
+       */
+      off(name: string, target: {}, method: Function): void;
+      /**
+       * DEPRECATED: Use `Ember.View` instead.
+       * Checks to see if object has any subscriptions for named event.
+       */
+      has(name: string): boolean;
+      /**
+       * DEPRECATED: Use `Ember.View` instead.
+       * The collection of functions, keyed by name, available on this `ActionHandler` as action targets.
+       */
+      actions: {};
+      /**
+       * DEPRECATED: Use `Ember.View` instead.
+       * Triggers a named action on the `ActionHandler`. Any parameters supplied after the `actionName` string will be passed as arguments to the action target function.
+       */
+      send(actionName: string, context: any);
+    }
+    /**
+     * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+     * The `Ember.Select` view class renders a [select](https://developer.mozilla.org/en/HTML/Element/select) HTML element, allowing the user to choose from a list of options.
+     */
+    export class Select extends View {
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * The `multiple` attribute of the select element. Indicates whether multiple options can be selected.
+       */
+      multiple: boolean;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * The `disabled` attribute of the select element. Indicates whether the element is disabled from interactions.
+       */
+      disabled: boolean;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * The `required` attribute of the select element. Indicates whether a selected option is required for form validation.
+       */
+      required: boolean;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * The list of options.
+       */
+      content: Ember.Array;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * When `multiple` is `false`, the element of `content` that is currently selected, if any.
+       */
+      selection: {};
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * In single selection mode (when `multiple` is `false`), value can be used to get the current selection's value or set the selection by its value.
+       */
+      value: string;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * If given, a top-most dummy option will be rendered to serve as a user prompt.
+       */
+      prompt: string;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * The path of the option labels. See [content](/api/classes/Ember.Select.html#property_content).
+       */
+      optionLabelPath: string;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * The path of the option values. See [content](/api/classes/Ember.Select.html#property_content).
+       */
+      optionValuePath: string;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * The path of the option group. When this property is used, `content` should be sorted by `optionGroupPath`.
+       */
+      optionGroupPath: string;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-select
+       * The view class for optgroup.
+       */
+      groupView: View;
+    }
+    /**
+     * The internal class used to create textarea element when the `{{textarea}}` helper is used.
+     */
+    export class TextArea extends Component implements TextSupport {
+    }
+    /**
+     * The internal class used to create text inputs when the `{{input}}` helper is used with `type` of `text`. See [Ember.Templates.helpers.input](/api/classes/Ember.Templates.helpers.html#method_input)  for usage details. ## Layout and LayoutName properties Because HTML `input` elements are self closing `layout` and `layoutName` properties will not be applied. See [Ember.View](/api/classes/Ember.View.html)'s layout section for more information.
+     */
+    export class TextField extends Component implements TextSupport {
+      /**
+       * The `value` attribute of the input element. As the user inputs text, this property is updated live.
+       */
+      value: string;
+      /**
+       * The `type` attribute of the input element.
+       */
+      type: string;
+      /**
+       * The `size` of the text field in characters.
+       */
+      size: string;
+      /**
+       * The `pattern` attribute of input element.
+       */
+      pattern: string;
+      /**
+       * The `min` attribute of input element used with `type="number"` or `type="range"`.
+       */
+      min: string;
+      /**
+       * The `max` attribute of input element used with `type="number"` or `type="range"`.
+       */
+      max: string;
+    }
+    /**
+     * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-view
+     * `Ember.View` is the class in Ember responsible for encapsulating templates of HTML content, combining templates with data to render as sections of a page's DOM, and registering and responding to user-initiated events.
+     */
+    export class View extends CoreView implements TemplateRenderingSupport, ClassNamesSupport, LegacyViewSupport, InstrumentationSupport, VisibilitySupport, AriaRoleSupport {
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-view
+       * Standard CSS class names to apply to the view's outer element. This property automatically inherits any class names defined by the view's superclasses as well.
+       */
+      classNames: Ember.Array;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-view
+       * A list of properties of the view to apply as class names. If the property is a string value, the value of that string will be applied as a class name.
+       */
+      classNameBindings: Ember.Array;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-view
+       * Used to identify this view during debugging
+       */
+      instrumentDisplay: string;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-view
+       * If `false`, the view will appear hidden in DOM.
+       */
+      isVisible: boolean;
+      /**
+       * DEPRECATED: See http://emberjs.com/deprecations/v1.x/#toc_ember-view
+       * The WAI-ARIA role of the control represented by this view. For example, a button may have a role of type 'button', or a pane may have a role of type 'alertdialog'. This property is used by assistive software to help visually challenged users navigate rich web applications.
+       */
+      ariaRole: string;
+    }
+  }
+  /**
+   * A container used to instantiate and cache objects.
+   */
+  export class Container {
+  }
+  /**
+   * A registry used to store factory and option information keyed by type.
+   */
+  export class Registry {
+  }
+  export class Backburner {
+  }
+  /**
+   * Helper class that allows you to register your library with Ember.
+   */
+  export class Libraries {
+  }
+  /**
+   * Objects of this type can implement an interface to respond to requests to get and set. The default implementation handles simple properties.
+   */
+  export class Descriptor {
+  }
+  /**
+   * The Routing service is used by LinkComponent, and provides facilities for the component/view layer to interact with the router.
+   */
+  export class RoutingService {
+  }
+  export interface Function {
+    /**
+     * The `property` extension of Javascript's Function prototype is available when `Ember.EXTEND_PROTOTYPES` or `Ember.EXTEND_PROTOTYPES.Function` is `true`, which is the default.
+     */
+    property();
+    /**
+     * The `observes` extension of Javascript's Function prototype is available when `Ember.EXTEND_PROTOTYPES` or `Ember.EXTEND_PROTOTYPES.Function` is true, which is the default.
+     */
+    observes();
+    /**
+     * The `on` extension of Javascript's Function prototype is available when `Ember.EXTEND_PROTOTYPES` or `Ember.EXTEND_PROTOTYPES.Function` is true, which is the default.
+     */
+    on();
+  }
+  export interface String {
+  }
+  /**
+   * ContainerProxyMixin is used to provide public access to specific container functionality.
+   */
+  export class ContainerProxyMixin {
+    /**
+     * Returns an object that can be used to provide an owner to a manually created instance.
+     */
+    ownerInjection(): {};
+    /**
+     * Given a fullName return a corresponding instance.
+     */
+    lookup(fullName: string, options: {}): any;
+  }
+  /**
+   * RegistryProxyMixin is used to provide public access to specific registry functionality.
+   */
+  export class RegistryProxyMixin {
+    /**
+     * Given a fullName return the corresponding factory.
+     */
+    resolveRegistration(fullName: string): Function;
+    /**
+     * Registers a factory that can be used for dependency injection (with `inject`) or for service lookup. Each factory is registered with a full name including two parts: `type:name`.
+     */
+    register(fullName: string, factory: Function, options: {});
+    /**
+     * Unregister a factory.
+     */
+    unregister(fullName: string);
+    /**
+     * Check if a factory is registered.
+     */
+    hasRegistration(fullName: string): boolean;
+    /**
+     * Register an option for a particular factory.
+     */
+    registerOption(fullName: string, optionName: string, options: {});
+    /**
+     * Return a specific registered option for a particular factory.
+     */
+    registeredOption(fullName: string, optionName: string): {};
+    /**
+     * Register options for a particular factory.
+     */
+    registerOptions(fullName: string, options: {});
+    /**
+     * Return registered options for a particular factory.
+     */
+    registeredOptions(fullName: string): {};
+    /**
+     * Allow registering options for all factories of a type.
+     */
+    registerOptionsForType(type: string, options: {});
+    /**
+     * Return the registered options for all factories of a type.
+     */
+    registeredOptionsForType(type: string): {};
+    /**
+     * Define a dependency injection onto a specific factory or all factories of a type.
+     */
+    inject(factoryNameOrType: string, property: string, injectionName: string);
+  }
+  /**
+   * An HTMLBars AST transformation that replaces all instances of
+   */
+  export class TransformEachInToHash {
+  }
+  /**
+   * An HTMLBars AST transformation that replaces all instances of
+   */
+  export class TransformInputOnToOnEvent {
+  }
+  export default Ember
+}

@@ -1,3 +1,15 @@
-<button {{action "loadProcess"}}>Загрузить первый процесс</button>
-
-<button {{action "testLSA"}}>Тест ЛСА</button>
+<div class="ui stackable custom grid">
+    <div class="row">
+        {{time}}
+    </div>
+    <div class="row">
+        {{#each activeProcesses as |process|}}
+        {{process.lSA}}
+        {{process.code}}
+        {{/each}}
+    </div>
+    <div class="row">
+        <button {{action "startProcess"}}>Запустить процесс</button>
+        <button {{action "testLSA"}}>Тест ЛСА</button>
+    </div>
+</div>

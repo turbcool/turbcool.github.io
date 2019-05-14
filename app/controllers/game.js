@@ -4,34 +4,31 @@ import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Moment from 'moment';
 import AR from '../classes/ActiveResource';
 import Process from '../classes/Process';
-import LSAHandler from '../classes/LSAHandler';
 
 export default Ember.Controller.extend({
-    process: null,
-    agents:[],
+    time: new Date(),
+
+    activeProcesses: [],
+    agents: [],
 
     helloworld() { },
-    
+
     init() {
         this._super(...arguments);
-        
-        /*var self = this;
-        var ar = new AR();
-        ar.schedule(process);
-        
-        this.set('time', new Moment(new Date()).format('DD-MM-YYYY'));
 
-        this.loadResource('worker').then(() => {
-            self.setWorkerList();
-        });
-        this.loadResource('task');
-        this.loadResource('budget');
-        */
+        var self = this;
+
+        this.set('time', new Moment(new Date()).format('DD-MM-YYYY HH:MM'));
     },
 
+    /**
+     * Загружает новый процесс
+     * @param {string} code Код процесса
+     * @returns {Promise} Загруженный процесс
+     */
     loadProcess(code) {
         let self = this;
-        let byCode = new SimplePredicate('code', Query.Operator.Eq, code);
+        let byCode = new SimplePredicate('code', Query.FilterOperator.Eq, code);
 
         let builder = new Query.Builder(this.get('store'))
             .from('n-i-b-g-business-process')
@@ -41,14 +38,29 @@ export default Ember.Controller.extend({
 
         return self.get('store').query('n-i-b-g-business-process', builder.build()).then((result) => {
             let process = result.get('firstObject');
-            console.log('Загружен процесс: ' + process)
+            console.log('Загружен процесс: ' + process);
             return process;
         });
     },
 
-    loadOperation(code){
+    startProcess(code) {
+        var self = this;
+        return this.loadProcess(code).then((process) => {
+            let lsa = process.get('lSA');
+
+            this.playLSA(lsa);
+        });
+    },
+
+    addProcess(process) {
+        let processes = this.get('activeProcesses');
+        processes.push(process);
+        this.set('activeProcesses', processes);
+    },
+
+    loadOperation(code) {
         let self = this;
-        let byCode = new SimplePredicate('code', Query.Operator.Eq, code);
+        let byCode = new SimplePredicate('code', Query.FilterOperator.Eq, code);
 
         let builder = new Query.Builder(this.get('store'))
             .from('n-i-b-g-operation')
@@ -58,47 +70,65 @@ export default Ember.Controller.extend({
 
         return self.get('store').query('n-i-b-g-operation', builder.build()).then((result) => {
             let operation = result.get('firstObject');
-            console.log('Загружена операция: ' + operation)
+            console.log('Загружена операция: ' + operation);
             return operation;
         });
     },
 
-    isNumber(text){
-        return (!isNaN(text) && text!==' ');
+    startOperation(code) {
+        let self = this;
+        let time = this.get('time');
+        this.loadOperation(code).then((operation) => {
+            let duration = operation.get('duration');
+            time.setDate(time.getDate() + duration);
+            self.set('time', time);
+        });
     },
 
-    //TODO:
-    startProcess(code) {
-        console.log('Старт процесса: ' + code);
+    loadResource(code) {
+        var self = this;
+        var byCode = new SimplePredicate('code', Query.FilterOperator.Eq, code);
+
+        let builder = new Query.Builder(this.get('store'))
+            .from('n-i-b-g-resource')
+            .selectByProjection('ResourceE')
+            .where(byCode);
+
+        return self.get('store').query('n-i-b-g-resource', builder.build()).then((result) => {
+            let resource = result.get('firstObject');
+            console.log('Загружен ресурс: ' + resource)
+            return resource;
+        });
+    },
+
+    isNumber(text) {
+        return (!isNaN(text) && text !== ' ');
     },
 
     //TODO:
     checkUserChoice(condition) {
         if (condition = "R1")
             return true;
-        else 
+        else
             return false;
     },
 
-    playLSA() {
+    playLSA(lsa) {
         let pos = 0;
-        let lsa = "pR1^1 pR2^2 pR3^3 .1 P1P2P3 w^4 .2 P4P5P6 w^4 .3 P7P8P9 w^4 .4 F";
+        //let lsa = "pR1^1 pR2^2 pR3^3 .1 P1P2P3 w^4 .2 P4P5P6 w^4 .3 P7P8P9 w^4 .4 F";
 
-        while(lsa.charAt(pos) != 'F')
-        {
-            switch (lsa.charAt(pos))
-            {
+        while (lsa.charAt(pos) != 'F') {
+            switch (lsa.charAt(pos)) {
                 case 'p':
                     pos++;
-                    
+
                     //Extract condition (for ex. R1R2R3):
                     let condition = '';
-                    while (lsa.charAt(pos) === 'R' || this.isNumber(lsa.charAt(pos)))
-                    {
-                        condition+=lsa.charAt(pos);
+                    while (lsa.charAt(pos) === 'R' || this.isNumber(lsa.charAt(pos))) {
+                        condition += lsa.charAt(pos);
                         pos++;
                     }
-                    
+
                     let correct = this.checkUserChoice(condition);
                     if (!correct) {
                         pos++;
@@ -110,22 +140,22 @@ export default Ember.Controller.extend({
                     break;
                 case '^':
                     pos++;
-                    
+
                     //Extract number after ^:
                     let number = '';
                     while (this.isNumber(lsa.charAt(pos))) {
-                        number+=lsa.charAt(pos);
+                        number += lsa.charAt(pos);
                         pos++;
                     }
 
                     //Move to next valid endpoint:
                     let correctEndPoint = false;
-                    while(!correctEndPoint) {
-                        while(lsa.charAt(pos)!='.') {
+                    while (!correctEndPoint) {
+                        while (lsa.charAt(pos) != '.') {
                             pos++;
                         }
                         pos++;
-                        
+
                         //Move to next endpoint:
                         let endpoint = '';
                         while (this.isNumber(lsa.charAt(pos))) {
@@ -134,7 +164,7 @@ export default Ember.Controller.extend({
                         }
 
                         //Check if endpoint is valid:
-                        if (endpoint === number){
+                        if (endpoint === number) {
                             correctEndPoint = true;
                         }
                     }
@@ -143,15 +173,31 @@ export default Ember.Controller.extend({
                 case 's':
                     pos++;
 
-                    //Extract process code:
-                    let processCode = '';
-                    while (this.isNumber(lsa.charAt(pos))) {
-                        processCode += lsa.charAt(pos);
-                        pos++;
+                    switch (lsa.charAt(pos)) {
+                        case 'P':
+                            //Extract process code:
+                            let processCode = 'P'; pos++;
+                            while (this.isNumber(lsa.charAt(pos))) {
+                                processCode += lsa.charAt(pos);
+                                pos++;
+                            }
+                            //Run process:
+                            this.startProcess(processCode).then(() => {
+
+                            });
+                            break;
+                        case 'O':
+                            //Extract operation code:
+                            let operCode = 'O'; pos++;
+                            while (this.isNumber(lsa.charAt(pos))) {
+                                operCode += lsa.charAt(pos);
+                                pos++;
+                            }
+                            //Run operation:
+                            this.startOperation(operCode);
+                            break;
                     }
 
-                    //Run process:
-                    this.startProcess(processCode);
                     break;
                 case 'w':
                     pos++;
@@ -163,46 +209,9 @@ export default Ember.Controller.extend({
         }
     },
 
-    startOperation(code) {
-        this.loadOperation(code).then((operation)=>{
-            
-        });
-    },
-
-    loadResource(name) {
-        var self = this;
-        var isType = new SimplePredicate('resType.keyname', Query.FilterOperator.Eq, name);
-
-        let builder = new Query.Builder(this.get('store'))
-            .from('b-g-resource')
-            .selectByProjection('ResourceE')
-            .where(isType);
-
-        return self.get('store').query('b-g-resource', builder.build()).then((result) => {
-
-            result.forEach((element) => {
-                element.initController();
-            });
-
-            var name_s = name + 's';
-            self.set(name_s, result);
-            console.log(name_s + ':');
-            console.log(self.get(name_s));
-        });
-    },
-
     setWorkerList() {
         var self = this;
 
-        var temp = {};
-        var workers = self.get('workers');
-        workers.toArray().forEach(function (el) {
-            temp[el.get('name')] = el;
-        });
-
-        this.set('workerList', temp);
-
-        this.set('workersNames', Object.keys(temp));
     },
 
     getSelectedWorker(name) {
@@ -246,10 +255,6 @@ export default Ember.Controller.extend({
 
     actions: {
 
-        testLSA(){
-            this.playLSA(this.LSA);
-        },
-
         simulate() {
             var self = this;
 
@@ -265,11 +270,9 @@ export default Ember.Controller.extend({
             }
         },
 
-        loadProcess() {
+        startProcess() {
             let self = this;
-            this.loadProcess().then((process) => {
-                self.set('process', process)
-            });
+            this.startProcess('P0');
         },
     }
 });
