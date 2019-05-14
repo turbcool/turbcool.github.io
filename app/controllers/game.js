@@ -2,16 +2,18 @@ import Ember from 'ember';
 import { Query } from 'ember-flexberry-data';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Moment from 'moment';
-import AR from '../classes/ActiveResource';
-import Process from '../classes/Process';
+//import AR from '../classes/ActiveResource';
+//import Process from '../classes/Process';
 
 export default Ember.Controller.extend({
-    time: new Date(),
+    time: 0,
     log: [],
     process: null,
 
     activeProcesses: [],
     agents: [],
+
+    resolveUserChoice: null,
 
     helloworld() { },
 
@@ -20,7 +22,7 @@ export default Ember.Controller.extend({
 
         var self = this;
 
-        this.set('time', new Moment(new Date()).format('DD-MM-YYYY HH:MM'));
+        //this.set('time', new Moment().format('DD-MM-YYYY HH:MM'));
     },
 
     /**
@@ -74,11 +76,9 @@ export default Ember.Controller.extend({
 
     startOperation(code) {
         let self = this;
-        let time = this.get('time');
         this.loadOperation(code).then((operation) => {
             let duration = operation.get('duration');
-            time.setDate(time.getDate() + duration);
-            self.set('time', time);
+            self.set('time', time + duration);
         });
     },
 
@@ -129,10 +129,9 @@ export default Ember.Controller.extend({
     startAROperation(code) {
         let self = this;
         let time = this.get('time');
-        var ok = this.loadOperation(code).then((operation) => {
+        return this.loadAROperation(code).then((operation) => {
             let duration = operation.get('duration');
-            time.setDate(time.getDate() + duration);
-            self.set('time', time);
+            self.set('time', time + duration);
         });
     },
 
@@ -149,6 +148,30 @@ export default Ember.Controller.extend({
             let resource = result.get('firstObject');
             console.log('Загружен ресурс: ' + resource);
             return resource;
+        });
+    },
+
+    loadAllResources() {
+        let self = this;
+        let builder = new Query.Builder(this.get('store'))
+            .from('n-i-b-g-resource')
+            .selectByProjection('ResourceE');
+
+        return self.get('store').query('n-i-b-g-resource', builder.build()).then((result) => {
+            result = this.uniqueBy(result, 'code');
+            console.log('Загружены все ресурсы: ' + result);
+            return result;
+        });
+    },
+
+    uniqueBy(model, property) {
+        var uniqueObjects = [];
+        return model.filter(function (item) {
+            if (!uniqueObjects.isAny(property, item.property)) {
+                uniqueObjects.push(item);
+                return true;
+            }
+            return false;
         });
     },
 
@@ -170,10 +193,41 @@ export default Ember.Controller.extend({
     },
 
     //TODO:
-    checkUserChoice(condition) {
-        condition === "R1" ? true : false;
+    checkUserChoice(chosenResources, condition) {
+        //TODO: array input
+        /*let resArray = chosenResources.sortBy('code');
+        let resArray = [chosenResources];
+        let concatedString = '';
+        for (var i = 0, len = resArray.length; i < len; i++) {
+            concatedString += resArray[i].get('code');
+        }
+
+        return (concatedString === condition);
+        */
+        return (chosenResources === condition);
     },
 
+    askForChoice() {
+        let self = this;
+        return this.loadAllResources().then((resources) => {
+            this.set('userChoice', resources);
+            Ember.$('.ui.modal').modal('show');
+            return new Promise((resolve, reject) => {
+                self.set('resolveUserChoice', resolve);
+            })
+        });
+    },
+
+    userChosen(resources) {
+        //Продолжим интерпретировать ЛСА
+        //в зависимости от выбранного ресурса
+        let resolve = this.get('resolveUserChoice');
+        resolve(resources);
+    },
+
+    //Н p^1 p2^2 w^4 .1 A1 p3^3 w^4 .2 A2 p3^3 w^4 ↓3 A3^4 .4 К.
+
+    //pR1^1 pR2^2 pR3^3 .1 sARP1sARP2sARP3 w^4 .2 sP4sP5sP6 w^4 .3 sP7sP8sP9 w^4 .4 F
     nextLSACommand(lsa, pos) {
         let self = this;
 
@@ -322,15 +376,17 @@ export default Ember.Controller.extend({
                 break;
             case 'choice':
                 let condition = command.value;
-                let correct = this.checkUserChoice(condition);
-                if (!correct) {
-                    pos++;
-                    //Skip number:
-                    while (this.isNumber(lsa.charAt(pos))) {
+                this.askForChoice().then((chosenResources) => {
+                    let correct = self.checkUserChoice(chosenResources, condition);
+                    if (!correct) {
                         pos++;
+                        //Skip number:
+                        while (this.isNumber(lsa.charAt(pos))) {
+                            pos++;
+                        }
                     }
-                }
-                this.nextLSACommand(lsa, pos);
+                    this.nextLSACommand(lsa, pos);
+                });
                 break;
             case 'moveTo':
                 let number = command.value;
@@ -433,6 +489,12 @@ export default Ember.Controller.extend({
 
         showDebug() {
             this.set('debugMode', true);
+        },
+
+        choice(item) {
+            let chosenResource = item.get('code');
+            this.userChosen(chosenResource);
+            $('.ui.modal').modal('hide');
         },
     }
 });
