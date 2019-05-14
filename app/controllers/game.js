@@ -8,6 +8,8 @@ import Process from '../classes/Process';
 export default Ember.Controller.extend({
     time: new Date(),
 
+    process: null,
+
     activeProcesses: [],
     agents: [],
 
@@ -47,15 +49,10 @@ export default Ember.Controller.extend({
         var self = this;
         return this.loadProcess(code).then((process) => {
             let lsa = process.get('lSA');
-
+            self.addProcessDebug(process);
             this.playLSA(lsa);
+            self.removeProcessDebug(code);
         });
-    },
-
-    addProcess(process) {
-        let processes = this.get('activeProcesses');
-        processes.push(process);
-        this.set('activeProcesses', processes);
     },
 
     loadOperation(code) {
@@ -99,6 +96,19 @@ export default Ember.Controller.extend({
             console.log('Загружен ресурс: ' + resource)
             return resource;
         });
+    },
+
+    addProcessDebug(process) {
+        let processes = this.get('activeProcesses');
+        processes.pushObject(process);
+        this.set('activeProcesses', processes);
+    },
+
+    removeProcessDebug(code) {
+        let processes = this.get('activeProcesses');
+        let process = processes.findBy('code', code);
+        processes.removeObject(process);
+        this.set('activeProcesses', processes);
     },
 
     isNumber(text) {
@@ -209,15 +219,6 @@ export default Ember.Controller.extend({
         }
     },
 
-    setWorkerList() {
-        var self = this;
-
-    },
-
-    getSelectedWorker(name) {
-        return this.get('workerList')[name];
-    },
-
     tick() {
         var self = this;
         var tasks = this.get('tasks');
@@ -273,6 +274,10 @@ export default Ember.Controller.extend({
         startProcess() {
             let self = this;
             this.startProcess('P0');
+        },
+
+        showDebug() {
+            this.set('debugMode', true);
         },
     }
 });

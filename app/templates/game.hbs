@@ -3,13 +3,18 @@
         {{time}}
     </div>
     <div class="row">
-        {{#each activeProcesses as |process|}}
-        {{process.lSA}}
-        {{process.code}}
-        {{/each}}
+        <button class="ui button" {{action "startProcess"}}>Запустить процесс</button>
     </div>
-    <div class="row">
-        <button {{action "startProcess"}}>Запустить процесс</button>
-        <button {{action "testLSA"}}>Тест ЛСА</button>
+
+    {{#if debugMode}}
+    Список активных процессов:
+    {{#each activeProcesses as |process|}}
+    <div class="two column row">
+        <div class="column">{{process.code}}</div>
+        <div class="column">{{process.lSA}}</div>
     </div>
+    {{/each}}
+    {{else}}
+    <button class="ui button" {{action "showDebug"}}>Меню отладки</button>
+    {{/if}}
 </div>
