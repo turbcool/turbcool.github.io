@@ -14,6 +14,13 @@
         <div class="column">{{process.lSA}}</div>
     </div>
     {{/each}}
+
+    Лог команд ЛСА:
+    {{#each log as |logelem|}}
+    <div class="row">
+        <div class="column">{{logelem.text}}</div>
+    </div>
+    {{/each}}
     {{else}}
     <button class="ui button" {{action "showDebug"}}>Меню отладки</button>
     {{/if}}

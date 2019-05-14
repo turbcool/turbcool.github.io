@@ -7,7 +7,7 @@ import Process from '../classes/Process';
 
 export default Ember.Controller.extend({
     time: new Date(),
-
+    log: [],
     process: null,
 
     activeProcesses: [],
@@ -51,7 +51,7 @@ export default Ember.Controller.extend({
             let lsa = process.get('lSA');
             self.addProcessDebug(process);
             this.playLSA(lsa);
-            self.removeProcessDebug(code);
+            //self.removeProcessDebug(code);
         });
     },
 
@@ -82,6 +82,60 @@ export default Ember.Controller.extend({
         });
     },
 
+    loadARProcess(code) {
+        let self = this;
+        let byCode = new SimplePredicate('code', Query.FilterOperator.Eq, code);
+
+        let builder = new Query.Builder(this.get('store'))
+            .from('n-i-b-g-a-r-business-process')
+            .selectByProjection('ARBusinessProcessE')
+            .where(byCode)
+            .top(1);
+
+        return self.get('store').query('n-i-b-g-a-r-business-process', builder.build()).then((result) => {
+            let process = result.get('firstObject');
+            console.log('Загружен процесс АР: ' + process);
+            return process;
+        });
+    },
+
+    startARProcess(code) {
+        var self = this;
+        return this.loadARProcess(code).then((process) => {
+            let lsa = process.get('lSA');
+            self.addProcessDebug(process);
+            this.playLSA(lsa);
+            //self.removeProcessDebug(code);
+        });
+    },
+
+    loadAROperation(code) {
+        let self = this;
+        let byCode = new SimplePredicate('code', Query.FilterOperator.Eq, code);
+
+        let builder = new Query.Builder(this.get('store'))
+            .from('n-i-b-g-a-r-operation')
+            .selectByProjection('AROperationE')
+            .where(byCode)
+            .top(1);
+
+        return self.get('store').query('n-i-b-g-a-r-operation', builder.build()).then((result) => {
+            let process = result.get('firstObject');
+            console.log('Загружена операция АР: ' + process);
+            return process;
+        });
+    },
+
+    startAROperation(code) {
+        let self = this;
+        let time = this.get('time');
+        var ok = this.loadOperation(code).then((operation) => {
+            let duration = operation.get('duration');
+            time.setDate(time.getDate() + duration);
+            self.set('time', time);
+        });
+    },
+
     loadResource(code) {
         var self = this;
         var byCode = new SimplePredicate('code', Query.FilterOperator.Eq, code);
@@ -93,7 +147,7 @@ export default Ember.Controller.extend({
 
         return self.get('store').query('n-i-b-g-resource', builder.build()).then((result) => {
             let resource = result.get('firstObject');
-            console.log('Загружен ресурс: ' + resource)
+            console.log('Загружен ресурс: ' + resource);
             return resource;
         });
     },
@@ -117,15 +171,214 @@ export default Ember.Controller.extend({
 
     //TODO:
     checkUserChoice(condition) {
-        if (condition = "R1")
-            return true;
-        else
-            return false;
+        condition === "R1" ? true : false;
+    },
+
+    nextLSACommand(lsa, pos) {
+        let self = this;
+
+        let command = {
+            type: '',
+            value: null,
+        };
+
+        //Интерпретация ЛСА (получение команды ЛСА):
+        switch (lsa.charAt(pos)) {
+            case 'p':
+                pos++;
+                //Extract condition (for ex. R1R2R3):
+                let condition = '';
+                while (lsa.charAt(pos) === 'R' || this.isNumber(lsa.charAt(pos))) {
+                    condition += lsa.charAt(pos);
+                    pos++;
+                }
+                //pR1^1 pR2^2 pR3^3 .1 sARP1sARP2sARP3 w^4 .2 sP4sP5sP6 w^4 .3 sP7sP8sP9 w^4 .4 F
+
+                command = {
+                    type: 'choice',
+                    value: condition
+                };
+                break;
+            case '^':
+                pos++;
+                //Extract number after ^:
+                let endpointNumber = '';
+                while (this.isNumber(lsa.charAt(pos))) {
+                    endpointNumber += lsa.charAt(pos);
+                    pos++;
+                }
+                command = {
+                    type: 'moveTo',
+                    value: endpointNumber
+                };
+                break;
+            case 's':
+                pos++;
+
+                switch (lsa.charAt(pos)) {
+                    case 'P':
+                        //Extract process code:
+                        let processCode = 'P'; pos++;
+                        while (this.isNumber(lsa.charAt(pos))) {
+                            processCode += lsa.charAt(pos);
+                            pos++;
+                        }
+
+                        command = {
+                            type: 'simulate',
+                            value: processCode,
+                        };
+                        break;
+                    case 'O':
+                        //Extract operation code:
+                        let operCode = 'O'; pos++;
+                        while (this.isNumber(lsa.charAt(pos))) {
+                            operCode += lsa.charAt(pos);
+                            pos++;
+                        }
+                        command = {
+                            type: 'simulate',
+                            value: operCode,
+                        };
+                        break;
+                    case 'A':
+                        pos += 2;
+                        if (lsa.charAt(pos) === 'P') {
+                            //Extract active resource process code:
+                            let arProcessCode = 'ARP'; pos++;
+                            while (this.isNumber(lsa.charAt(pos))) {
+                                arProcessCode += lsa.charAt(pos);
+                                pos++;
+                            }
+                            command = {
+                                type: 'simulate',
+                                value: arProcessCode,
+                            };
+                        }
+                        else if (lsa.charAt(pos) === 'O') {
+                            //Extract active resource operation code:
+                            let arOperationCode = 'ARO'; pos++;
+                            while (this.isNumber(lsa.charAt(pos))) {
+                                arOperationCode += lsa.charAt(pos);
+                                pos++;
+                            }
+                            command = {
+                                type: 'simulate',
+                                value: arOperationCode,
+                            };
+                        }
+                        break;
+                }
+
+                break;
+            case 'w':
+                pos++;
+                this.nextLSACommand(lsa, pos);
+                break;
+            case 'F':
+                command = {
+                    type: 'finish',
+                    value: lsa,
+                };
+                break;
+            default:
+                pos++;
+                this.nextLSACommand(lsa, pos);
+                break;
+        }
+
+        //Логирование полученной команды:
+        this.logLSACommand(command);
+
+        //Исполнение команды ЛСА:
+        switch (command.type) {
+            case 'simulate':
+                switch (command.value.charAt(0)) {
+                    case 'O':
+                        this.startOperation(command.value).then(() => {
+                            self.nextLSACommand(lsa, pos);
+                        });
+                        break;
+                    case 'P':
+                        this.startProcess(command.value).then(() => {
+                            self.nextLSACommand(lsa, pos);
+                        });
+                        break;
+                    case 'A':
+                        switch (command.value.charAt(2)) {
+                            case 'P':
+                                this.startARProcess(command.value).then(() => {
+                                    self.nextLSACommand(lsa, pos);
+                                });
+                                break;
+                            case 'O':
+                                this.startAROperation(command.value).then(() => {
+                                    self.nextLSACommand(lsa, pos);
+                                });
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 'choice':
+                let condition = command.value;
+                let correct = this.checkUserChoice(condition);
+                if (!correct) {
+                    pos++;
+                    //Skip number:
+                    while (this.isNumber(lsa.charAt(pos))) {
+                        pos++;
+                    }
+                }
+                this.nextLSACommand(lsa, pos);
+                break;
+            case 'moveTo':
+                let number = command.value;
+                let correctEndPoint = false;
+                while (!correctEndPoint) {
+                    while (lsa.charAt(pos) !== '.') {
+                        pos++;
+                    }
+                    pos++;
+
+                    //Move to next endpoint:
+                    let endpoint = '';
+                    while (this.isNumber(lsa.charAt(pos))) {
+                        endpoint += lsa.charAt(pos);
+                        pos++;
+                    }
+
+                    //Check if endpoint is valid:
+                    if (endpoint === number) {
+                        correctEndPoint = true;
+                    }
+                }
+                pos++;
+
+                this.nextLSACommand(lsa, pos);
+                break;
+            case 'finish':
+                break;
+        }
+    },
+
+    logLSACommand(command) {
+        if (command.type !== '') {
+            let log = this.get('log');
+            log.pushObject({ text: command.type + ' ' + command.value, date: new Date(), });
+            log.sortBy('date');
+            this.set('log', log);
+        }
     },
 
     playLSA(lsa) {
         let pos = 0;
-        //let lsa = "pR1^1 pR2^2 pR3^3 .1 P1P2P3 w^4 .2 P4P5P6 w^4 .3 P7P8P9 w^4 .4 F";
+        this.logLSACommand({ type: 'start', value: lsa });
+        this.nextLSACommand(lsa, pos);
+    },
+
+    playLSA_old(lsa) {
+        let pos = 0;
 
         while (lsa.charAt(pos) != 'F') {
             switch (lsa.charAt(pos)) {
@@ -206,6 +459,28 @@ export default Ember.Controller.extend({
                             //Run operation:
                             this.startOperation(operCode);
                             break;
+                        case 'A':
+                            pos += 2;
+                            if (lsa.charAt(pos) == 'P') {
+                                //Extract active resource process code:
+                                let arProcessCode = 'ARP'; pos++;
+                                while (this.isNumber(lsa.charAt(pos))) {
+                                    arProcessCode += lsa.charAt(pos);
+                                    pos++;
+                                }
+                                this.startARProcess(arProcessCode);
+                            }
+                            else if (lsa.charAt(pos) == 'O') {
+                                //Extract active resource operation code:
+                                let arOperationCode = 'ARO'; pos++;
+                                while (this.isNumber(lsa.charAt(pos))) {
+                                    arOperationCode += lsa.charAt(pos);
+                                    pos++;
+                                }
+                                this.startAROperation(arOperationCode);
+                            }
+
+                            break;
                     }
 
                     break;
@@ -217,12 +492,12 @@ export default Ember.Controller.extend({
                     break;
             }
         }
+
     },
 
     tick() {
         var self = this;
         var tasks = this.get('tasks');
-
 
         tasks.get('firstObject').tick();
 
@@ -262,8 +537,6 @@ export default Ember.Controller.extend({
             this.simulateProcess();
             return;
             //Запустить сценарий
-
-
 
             var ticks = this.get('ticks');
             for (var i = 0; i < ticks; i++) {
