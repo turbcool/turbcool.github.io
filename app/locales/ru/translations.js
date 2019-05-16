@@ -179,7 +179,7 @@ Ember.$.extend(true, translations, {
     'resource': ResourceModel,
   },
 
-  'application-name': 'App',
+  'application-name': 'Подсистема проведения (СКДИ)',
 
   forms: {
     loading: {
@@ -219,33 +219,117 @@ Ember.$.extend(true, translations, {
       },
 
       footer: {
-        'application-name': 'App',
+        'application-name': 'Подсистема проведения (СКДИ)',
         'application-version': {
           caption: 'Версия аддона {{version}}',
           title: 'Это версия аддона ember-flexberry, которая сейчас используется в этом тестовом приложении ' +
-          '(версия npm-пакета + хэш коммита). ' +
-          'Кликните, чтобы перейти на GitHub.'
+            '(версия npm-пакета + хэш коммита). ' +
+            'Кликните, чтобы перейти на GitHub.'
         }
       },
 
       sitemap: {
         'application-name': {
-          caption: 'App',
-          title: 'App'
+          caption: 'Подсистема проведения (СКДИ)',
+          title: 'Подсистема проведения (СКДИ)'
         },
         'application-version': {
           caption: 'Версия аддона {{version}}',
           title: 'Это версия аддона ember-flexberry, которая сейчас используется в этом тестовом приложении ' +
-          '(версия npm-пакета + хэш коммита). ' +
-          'Кликните, чтобы перейти на GitHub.'
+            '(версия npm-пакета + хэш коммита). ' +
+            'Кликните, чтобы перейти на GitHub.'
         },
         index: {
           caption: 'Главная',
           title: ''
         },
+        'бизнес-процессы': {
+          caption: 'Бизнес-процессы',
+          title: 'Бизнес-процессы',
+          'n-i-b-g-business-process-l': {
+            caption: 'Бизнес-процессы',
+            title: ''
+          },
+          'n-i-b-g-operation-l': {
+            caption: 'Операции',
+            title: ''
+          }
+        },
+        ресурсы: {
+          caption: 'Ресурсы',
+          title: 'Ресурсы',
+          'n-i-b-g-resource-l': {
+            caption: 'Ресурсы',
+            title: ''
+          },
+          'n-i-b-g-resource-type-l': {
+            caption: 'Типы ресурсов',
+            title: ''
+          },
+          'n-i-b-g-resource-attribute-l': {
+            caption: 'Атрибуты ресурсов',
+            title: ''
+          },
+          'n-i-b-g-resource-in-operation-l': {
+            caption: 'Ресурсы в операциях БП',
+            title: ''
+          }
+        },
+        'активные-ресурсы-а-р': {
+          caption: 'Активные ресурсы (АР)',
+          title: 'Активные ресурсы (АР)',
+          'n-i-b-g-active-resource-l': {
+            caption: 'Активные ресурсы',
+            title: ''
+          },
+          'n-i-b-g-active-resource-type-l': {
+            caption: 'Типы активных ресурсов',
+            title: ''
+          },
+          'n-i-b-g-a-r-instance-l': {
+            caption: 'Экземпляры АР',
+            title: ''
+          },
+          'n-i-b-g-a-r-attribute-l': {
+            caption: 'Атрибуты экземпляров АР',
+            title: ''
+          },
+          'n-i-b-g-resource-in-a-r-operation-l': {
+            caption: 'Ресурсы в операциях АР',
+            title: ''
+          },
+          'n-i-b-g-a-r-resource-i-n-a-r-operation-l': {
+            caption: 'Ресурсы АР в операциях АР',
+            title: ''
+          }
+        },
+        'бизнес-процессы-а-р': {
+          caption: 'Бизнес-процессы АР',
+          title: 'Бизнес-процессы АР',
+          'n-i-b-g-a-r-business-process-l': {
+            caption: 'Бизнес-процессы АР',
+            title: ''
+          },
+          'n-i-b-g-a-r-operation-l': {
+            caption: 'Операции АР',
+            title: ''
+          },
+          'n-i-b-g-a-r-resource-attribute-l': {
+            caption: 'Атрибуты ресурсов АР',
+            title: ''
+          },
+          'n-i-b-g-a-r-resource-l': {
+            caption: 'Ресурсы АР',
+            title: ''
+          },
+          'n-i-b-g-a-r-resource-type-l': {
+            caption: 'Типы ресурсов АР',
+            title: ''
+          }
+        },
         app: {
-          caption: 'App',
-          title: 'App',
+          caption: 'Подсистема проведения (СКДИ)',
+          title: 'Подсистема проведения (СКДИ)',
           'n-i-b-g-business-process-l': {
             caption: 'Business process',
             title: ''

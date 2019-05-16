@@ -1,0 +1,10 @@
+<div class="ui card">
+    <div class="content">
+        <div class="header">{{arinstanceType.name}} {{arinstance.name}}</div>
+        <div class="description">
+            {{#each attributes as |attribute|}}
+            <p>{{attribute.name}}: {{attribute.amount}}</p>
+            {{/each}}
+        </div>
+    </div>
+</div>

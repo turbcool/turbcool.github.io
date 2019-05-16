@@ -10,10 +10,17 @@ export default Ember.Controller.extend({
     log: [],
     process: null,
 
-    activeProcesses: [],
+    waitForUserMode: false,
+
+    activeProcesses: [], //
+    activeARProcesses: [], //
+
+    arInstances: [],
+
     agents: [],
 
     resolveUserChoice: null,
+    resolveNextOperation: null,
 
     helloworld() { },
 
@@ -42,7 +49,7 @@ export default Ember.Controller.extend({
 
         return self.get('store').query('n-i-b-g-business-process', builder.build()).then((result) => {
             let process = result.get('firstObject');
-            console.log('Загружен процесс: ' + process);
+            console.log('Загружен процесс: ' + code);
             return process;
         });
     },
@@ -50,10 +57,13 @@ export default Ember.Controller.extend({
     startProcess(code) {
         var self = this;
         return this.loadProcess(code).then((process) => {
+            if (process === undefined) {
+                throw new Error(`Процесс ${code} не найден в базе данных`);
+            }
             let lsa = process.get('lSA');
             self.addProcessDebug(process);
             this.playLSA(lsa);
-            //self.removeProcessDebug(code);
+            self.removeProcessDebug(code);
         });
     },
 
@@ -69,7 +79,7 @@ export default Ember.Controller.extend({
 
         return self.get('store').query('n-i-b-g-operation', builder.build()).then((result) => {
             let operation = result.get('firstObject');
-            console.log('Загружена операция: ' + operation);
+            console.log('Загружена операция: ' + code);
             return operation;
         });
     },
@@ -77,6 +87,9 @@ export default Ember.Controller.extend({
     startOperation(code) {
         let self = this;
         return this.loadOperation(code).then((operation) => {
+            if (operation === undefined) {
+                throw new Error(`Операция ${code} не найдена в базе данных`);
+            }
             let duration = operation.get('duration');
             let time = self.get('time');
             self.set('time', time + duration);
@@ -101,12 +114,43 @@ export default Ember.Controller.extend({
     },
 
     startARProcess(code) {
-        var self = this;
+        let self = this;
         return this.loadARProcess(code).then((process) => {
+            if (process === undefined) {
+                throw new Error(`Процесс ${code} не найден в базе данных`);
+            }
             let lsa = process.get('lSA');
-            self.addProcessDebug(process);
-            this.playLSA(lsa);
-            //self.removeProcessDebug(code);
+            self.addARProcessDebug(process);
+
+            return self.loadARInstanceByProcess(code).then((arI) => {
+                let arIs = self.get('arInstances');
+                arIs.pushObject(arI);
+                self.set('arInstances', arIs);
+
+                self.playLSA(lsa);
+            });
+        });
+    },
+
+    loadARInstanceByProcess(code) {
+        let self = this;
+
+        //Загрузим процесс:
+        return this.loadARProcess(code).then((process) => {
+            let arInstanceKey = process.get('aRInstance.id');
+
+            //Загрузим связанный с АРБП экземпляр АР:
+            let byID = new SimplePredicate('id', Query.FilterOperator.Eq, arInstanceKey);
+            let builder = new Query.Builder(this.get('store'))
+                .from('n-i-b-g-a-r-instance')
+                .selectByProjection('ARInstanceE')
+                .where(byID)
+                .top(1);
+            return self.get('store').query('n-i-b-g-a-r-instance', builder.build()).then((result) => {
+                let arInstance = result.get('firstObject');
+                console.log('Загружен экземпляр АР: ' + code);
+                return arInstance;
+            });
         });
     },
 
@@ -121,15 +165,18 @@ export default Ember.Controller.extend({
             .top(1);
 
         return self.get('store').query('n-i-b-g-a-r-operation', builder.build()).then((result) => {
-            let process = result.get('firstObject');
-            console.log('Загружена операция АР: ' + process);
-            return process;
+            let arOperation = result.get('firstObject');
+            console.log('Загружена операция АР: ' + code);
+            return arOperation;
         });
     },
 
     startAROperation(code) {
         let self = this;
         return this.loadAROperation(code).then((operation) => {
+            if (operation === undefined) {
+                throw new Error(`Операция ${code} не найдена в базе данных`);
+            }
             let duration = operation.get('duration');
             let time = self.get('time');
             self.set('time', time + duration);
@@ -147,7 +194,7 @@ export default Ember.Controller.extend({
 
         return self.get('store').query('n-i-b-g-resource', builder.build()).then((result) => {
             let resource = result.get('firstObject');
-            console.log('Загружен ресурс: ' + resource);
+            console.log('Загружен ресурс: ' + code);
             return resource;
         });
     },
@@ -159,8 +206,21 @@ export default Ember.Controller.extend({
             .selectByProjection('ResourceE');
 
         return self.get('store').query('n-i-b-g-resource', builder.build()).then((result) => {
-            result = this.uniqueBy(result, 'code');
+            result = this.uniqueBy(result, 'code').sortBy('code');
             console.log('Загружены все ресурсы: ' + result);
+            return result;
+        });
+    },
+
+    loadAllActiveResources() {
+        let self = this;
+        let builder = new Query.Builder(this.get('store'))
+            .from('n-i-b-g-active-resource')
+            .selectByProjection('ActiveResourceE');
+
+        return self.get('store').query('n-i-b-g-active-resource', builder.build()).then((result) => {
+            result = this.uniqueBy(result, 'code').sortBy('code');
+            console.log('Загружены все активные ресурсы: ' + result);
             return result;
         });
     },
@@ -182,11 +242,24 @@ export default Ember.Controller.extend({
         this.set('activeProcesses', processes);
     },
 
+    addARProcessDebug(process) {
+        let processes = this.get('activeARProcesses');
+        processes.pushObject(process);
+        this.set('activeARProcesses', processes);
+    },
+
     removeProcessDebug(code) {
         let processes = this.get('activeProcesses');
         let process = processes.findBy('code', code);
         processes.removeObject(process);
         this.set('activeProcesses', processes);
+    },
+
+    removeARProcessDebug(code) {
+        let processes = this.get('activeARProcesses');
+        let process = processes.findBy('process.code', code);
+        processes.removeObject(process);
+        this.set('activeARProcesses', processes);
     },
 
     isNumber(text) {
@@ -208,6 +281,7 @@ export default Ember.Controller.extend({
         return (chosenResources === condition);
     },
 
+    //Проверить выбор игрока (из всех возможных ресурсов):
     askForChoice() {
         let self = this;
         return this.loadAllResources().then((resources) => {
@@ -219,6 +293,14 @@ export default Ember.Controller.extend({
         });
     },
 
+    //Ждать следующей команды
+    waitNextOperationCommand() {
+        let self = this;
+        return new Promise((resolve, reject) => {
+            self.set('resolveNextOperation', resolve);
+        });
+    },
+
     userChosen(resources) {
         //Продолжим интерпретировать ЛСА
         //в зависимости от выбранного ресурса
@@ -226,9 +308,6 @@ export default Ember.Controller.extend({
         resolve(resources);
     },
 
-    //Н p^1 p2^2 w^4 .1 A1 p3^3 w^4 .2 A2 p3^3 w^4 ↓3 A3^4 .4 К.
-
-    //pR1^1 pR2^2 pR3^3 .1 sARP1sARP2sARP3 w^4 .2 sP4sP5sP6 w^4 .3 sP7sP8sP9 w^4 .4 F
     nextLSACommand(lsa, pos) {
         let self = this;
 
@@ -247,7 +326,6 @@ export default Ember.Controller.extend({
                     condition += lsa.charAt(pos);
                     pos++;
                 }
-                //pR1^1 pR2^2 pR3^3 .1 sARP1sARP2sARP3 w^4 .2 sP4sP5sP6 w^4 .3 sP7sP8sP9 w^4 .4 F
 
                 command = {
                     type: 'choice',
@@ -267,69 +345,65 @@ export default Ember.Controller.extend({
                     value: endpointNumber
                 };
                 break;
-            case 's':
-                pos++;
-
-                switch (lsa.charAt(pos)) {
-                    case 'P':
-                        //Extract process code:
-                        let processCode = 'P'; pos++;
-                        while (this.isNumber(lsa.charAt(pos))) {
-                            processCode += lsa.charAt(pos);
-                            pos++;
-                        }
-
-                        command = {
-                            type: 'simulate',
-                            value: processCode,
-                        };
-                        break;
-                    case 'O':
-                        //Extract operation code:
-                        let operCode = 'O'; pos++;
-                        while (this.isNumber(lsa.charAt(pos))) {
-                            operCode += lsa.charAt(pos);
-                            pos++;
-                        }
-                        command = {
-                            type: 'simulate',
-                            value: operCode,
-                        };
-                        break;
-                    case 'A':
-                        pos += 2;
-                        if (lsa.charAt(pos) === 'P') {
-                            //Extract active resource process code:
-                            let arProcessCode = 'ARP'; pos++;
-                            while (this.isNumber(lsa.charAt(pos))) {
-                                arProcessCode += lsa.charAt(pos);
-                                pos++;
-                            }
-                            command = {
-                                type: 'simulate',
-                                value: arProcessCode,
-                            };
-                        }
-                        else if (lsa.charAt(pos) === 'O') {
-                            //Extract active resource operation code:
-                            let arOperationCode = 'ARO'; pos++;
-                            while (this.isNumber(lsa.charAt(pos))) {
-                                arOperationCode += lsa.charAt(pos);
-                                pos++;
-                            }
-                            command = {
-                                type: 'simulate',
-                                value: arOperationCode,
-                            };
-                        }
-                        break;
-                }
-
-                break;
             case 'w':
                 pos++;
                 this.nextLSACommand(lsa, pos);
                 break;
+
+            //____________Запуск процессов и операций___________
+            case 'P':
+                //Extract process code:
+                let processCode = 'P'; pos++;
+                while (this.isNumber(lsa.charAt(pos))) {
+                    processCode += lsa.charAt(pos);
+                    pos++;
+                }
+
+                command = {
+                    type: 'simulate',
+                    value: processCode,
+                };
+                break;
+            case 'O':
+                //Extract operation code:
+                let operCode = 'O'; pos++;
+                while (this.isNumber(lsa.charAt(pos))) {
+                    operCode += lsa.charAt(pos);
+                    pos++;
+                }
+                command = {
+                    type: 'simulate',
+                    value: operCode,
+                };
+                break;
+            case 'A':
+                pos += 2;
+                if (lsa.charAt(pos) === 'P') {
+                    //Extract active resource process code:
+                    let arProcessCode = 'ARP'; pos++;
+                    while (this.isNumber(lsa.charAt(pos))) {
+                        arProcessCode += lsa.charAt(pos);
+                        pos++;
+                    }
+                    command = {
+                        type: 'simulate',
+                        value: arProcessCode,
+                    };
+                }
+                else if (lsa.charAt(pos) === 'O') {
+                    //Extract active resource operation code:
+                    let arOperationCode = 'ARO'; pos++;
+                    while (this.isNumber(lsa.charAt(pos))) {
+                        arOperationCode += lsa.charAt(pos);
+                        pos++;
+                    }
+                    command = {
+                        type: 'simulate',
+                        value: arOperationCode,
+                    };
+                }
+                break;
+            //___________Запуск процессов и операций END_____________
             case 'F':
                 command = {
                     type: 'finish',
@@ -349,28 +423,35 @@ export default Ember.Controller.extend({
         switch (command.type) {
             case 'simulate':
                 switch (command.value.charAt(0)) {
-                    case 'O':
-                        this.startOperation(command.value).then(() => {
-                            self.nextLSACommand(lsa, pos);
-                        });
-                        break;
                     case 'P':
-                        this.startProcess(command.value).then(() => {
+                        return this.startProcess(command.value).then(() => {
                             self.nextLSACommand(lsa, pos);
                         });
-                        break;
+                    //break;
+                    case 'O':
+                        return this.startOperation(command.value).then(() => {
+                            self.nextLSACommand(lsa, pos);
+                        });
+                    //break;
                     case 'A':
                         switch (command.value.charAt(2)) {
                             case 'P':
-                                this.startARProcess(command.value).then(() => {
+                                return this.startARProcess(command.value).then(() => {
                                     self.nextLSACommand(lsa, pos);
                                 });
-                                break;
+                            //break;
                             case 'O':
-                                this.startAROperation(command.value).then(() => {
-                                    self.nextLSACommand(lsa, pos);
+                                return this.startAROperation(command.value).then(() => {
+                                    if (self.get('waitForUserMode')) {
+                                        self.waitNextOperationCommand().then(() => {
+                                            self.nextLSACommand(lsa, pos);
+                                        });
+                                    }
+                                    else {
+                                        self.nextLSACommand(lsa, pos);
+                                    }
                                 });
-                                break;
+                            //break;
                         }
                         break;
                 }
@@ -383,7 +464,7 @@ export default Ember.Controller.extend({
                     while (!correct) {
                         if (!correct)
                             pos++;
-                        //pR1^1 pR2^2 pR3^3 .1 sARP1sARP2sARP3 w^4 .2 sARP4sARP5sARP6 w^4 .3 sARP7sARP8sARP9 w^4 .4 F
+
                         //Skip number:
                         while (this.isNumber(lsa.charAt(pos)) || lsa.charAt(pos) === ' ') {
                             pos++;
@@ -451,6 +532,13 @@ export default Ember.Controller.extend({
         }
     },
 
+    clearLog() {
+        this.set('time', 0);
+        this.set('log', []);
+        this.set('activeProcesses', []);
+        this.set('activeARProcesses', []);
+    },
+
     playLSA(lsa) {
         let pos = 0;
         this.logLSACommand({ type: 'start', value: lsa });
@@ -459,8 +547,14 @@ export default Ember.Controller.extend({
 
     actions: {
 
+        nextOperation() {
+            let resolve = this.get('resolveNextOperation');
+            resolve();
+        },
+
         startProcess() {
             let self = this;
+            this.clearLog();
             this.startProcess('P0');
         },
 
@@ -472,6 +566,10 @@ export default Ember.Controller.extend({
             let chosenResource = item.get('code');
             this.userChosen(chosenResource);
             $('.ui.modal').modal('hide');
+        },
+
+        clearLog() {
+            this.clearLog();
         },
     }
 });

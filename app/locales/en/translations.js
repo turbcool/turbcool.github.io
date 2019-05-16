@@ -243,9 +243,93 @@ Ember.$.extend(true, translations, {
           caption: 'Home',
           title: ''
         },
+        'бизнес-процессы': {
+          caption: 'бизнес-процессы',
+          title: 'бизнес-процессы',
+          'n-i-b-g-business-process-l': {
+            caption: 'n-i-b-g-business-process-l',
+            title: 'n-i-b-g-business-process-l'
+          },
+          'n-i-b-g-operation-l': {
+            caption: 'n-i-b-g-operation-l',
+            title: 'n-i-b-g-operation-l'
+          }
+        },
+        ресурсы: {
+          caption: 'ресурсы',
+          title: 'ресурсы',
+          'n-i-b-g-resource-l': {
+            caption: 'n-i-b-g-resource-l',
+            title: 'n-i-b-g-resource-l'
+          },
+          'n-i-b-g-resource-type-l': {
+            caption: 'n-i-b-g-resource-type-l',
+            title: 'n-i-b-g-resource-type-l'
+          },
+          'n-i-b-g-resource-attribute-l': {
+            caption: 'n-i-b-g-resource-attribute-l',
+            title: 'n-i-b-g-resource-attribute-l'
+          },
+          'n-i-b-g-resource-in-operation-l': {
+            caption: 'n-i-b-g-resource-in-operation-l',
+            title: 'n-i-b-g-resource-in-operation-l'
+          }
+        },
+        'активные-ресурсы-а-р': {
+          caption: 'активные-ресурсы-а-р',
+          title: 'активные-ресурсы-а-р',
+          'n-i-b-g-active-resource-l': {
+            caption: 'n-i-b-g-active-resource-l',
+            title: 'n-i-b-g-active-resource-l'
+          },
+          'n-i-b-g-active-resource-type-l': {
+            caption: 'n-i-b-g-active-resource-type-l',
+            title: 'n-i-b-g-active-resource-type-l'
+          },
+          'n-i-b-g-a-r-instance-l': {
+            caption: 'n-i-b-g-a-r-instance-l',
+            title: 'n-i-b-g-a-r-instance-l'
+          },
+          'n-i-b-g-a-r-attribute-l': {
+            caption: 'n-i-b-g-a-r-attribute-l',
+            title: 'n-i-b-g-a-r-attribute-l'
+          },
+          'n-i-b-g-resource-in-a-r-operation-l': {
+            caption: 'n-i-b-g-resource-in-a-r-operation-l',
+            title: 'n-i-b-g-resource-in-a-r-operation-l'
+          },
+          'n-i-b-g-a-r-resource-i-n-a-r-operation-l': {
+            caption: 'n-i-b-g-a-r-resource-i-n-a-r-operation-l',
+            title: 'n-i-b-g-a-r-resource-i-n-a-r-operation-l'
+          }
+        },
+        'бизнес-процессы-а-р': {
+          caption: 'бизнес-процессы-а-р',
+          title: 'бизнес-процессы-а-р',
+          'n-i-b-g-a-r-business-process-l': {
+            caption: 'n-i-b-g-a-r-business-process-l',
+            title: 'n-i-b-g-a-r-business-process-l'
+          },
+          'n-i-b-g-a-r-operation-l': {
+            caption: 'n-i-b-g-a-r-operation-l',
+            title: 'n-i-b-g-a-r-operation-l'
+          },
+          'n-i-b-g-a-r-resource-attribute-l': {
+            caption: 'n-i-b-g-a-r-resource-attribute-l',
+            title: 'n-i-b-g-a-r-resource-attribute-l'
+          },
+          'n-i-b-g-a-r-resource-l': {
+            caption: 'n-i-b-g-a-r-resource-l',
+            title: 'n-i-b-g-a-r-resource-l'
+          },
+          'n-i-b-g-a-r-resource-type-l': {
+            caption: 'n-i-b-g-a-r-resource-type-l',
+            title: 'n-i-b-g-a-r-resource-type-l'
+          }
+        },
         app: {
-          caption: 'app',
-          title: 'app',
+          caption: 'Подсистема проведения (СКДИ)',
+          title: 'Подсистема проведения (СКДИ)',
           'n-i-b-g-business-process-l': {
             caption: 'n-i-b-g-business-process-l',
             title: 'n-i-b-g-business-process-l'

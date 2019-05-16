@@ -1,44 +1,92 @@
 <div class="ui stackable custom grid">
     <div class="row">
-        Игрвовое время: {{time}} часов
+        <h3>Игровое время: {{time}} часов</h3>
+    </div>
+    <div class="three column row">
+        {{#each arInstances as |item|}}
+        <div class="column">
+            {{arinstance-info arinstance=item showAmount=true}}
+        </div>
+        {{/each}}
     </div>
     <div class="row">
         <button class="ui button" {{action "startProcess"}}>Запустить процесс</button>
     </div>
 
+    {{#if waitForUserMode}}
+    <div class="row">
+        <button class="ui button" {{action "nextOperation"}}>Перейти к следующей операции</button>
+    </div>
+    {{/if}}
 
-    <div class="ui modal">
+    {{!flexberry-checkbox
+      value=waitForUserMode
+      label='Режим ожидания следующей операции'
+      readonly=readonly
+      class=class
+    }}
+
+    <div class="ui modal tiny">
         <i class="close icon"></i>
         <div class="header">
             Выберите игровой ресурс:
         </div>
         <div class="content">
             <div class="ui stackable custom grid">
-                {{#each userChoice as |item|}}
-                <div class="row">
-                    {{project-plan resource=item choice='choice'}}
+                <div class="three column row">
+                    {{#each userChoice as |item|}}
+                    <div class="column">
+                        {{resource-choice resource=item choice='choice'}}
+                    </div>
+                    {{/each}}
                 </div>
-                {{/each}}
             </div>
         </div>
     </div>
-
+</div>
+<div class="ui stackable custom grid">
     {{#if debugMode}}
-    Список активных процессов:
-    {{#each activeProcesses as |process|}}
-    <div class="two column row">
-        <div class="column">{{process.code}}</div>
-        <div class="column">{{process.lSA}}</div>
-    </div>
-    {{/each}}
 
-    Лог команд ЛСА:
-    {{#each log as |logelem|}}
     <div class="row">
-        <div class="column">{{logelem.text}}</div>
+        <button class="ui button" {{action "clearLog"}}>Очистить лог</button>
     </div>
-    {{/each}}
+    <div class="two column row">
+        <div class="column">
+            <h4>Список активных процессов:</h4>
+        </div>
+        <div class="column"></div>
+        {{#each activeProcesses as |process|}}
+        <div class="two column row">
+            <div class="column">{{process.code}}</div>
+            <div class="column">{{process.lSA}}</div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="two column row">
+        <div class="column">
+            <h4>Список активных процессов АР:</h4>
+        </div>
+        <div class="column"></div>
+        {{#each activeARProcesses as |process|}}
+        <div class="two column row">
+            <div class="column">{{process.code}}</div>
+            <div class="column">{{process.lSA}}</div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="one column row">
+        <div class="column">
+            <h4>Лог команд ЛСА:</h4>
+        </div>
+        {{#each log as |logelem|}}
+        <div class="column">
+            {{logelem.text}}
+        </div>
+        {{/each}}
+    </div>
     {{else}}
-    <button class="ui button" {{action "showDebug"}}>Меню отладки</button>
+    <div class="row">
+        <button class="ui button" {{action "showDebug"}}>Меню отладки</button>
+    </div>
     {{/if}}
 </div>

@@ -4,140 +4,150 @@
   "items": [
     {
       "link": null,
-      "menuName": "app",
-      "caption": "App",
-      "title": "App",
+      "menuName": "бизнес-процессы",
+      "caption": "Бизнес-процессы",
+      "title": "Бизнес-процессы",
       "children": [
         {
           "link": "n-i-b-g-business-process-l",
           "menuName": null,
-          "caption": "Business process",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-resource-type-l",
-          "menuName": null,
-          "caption": "Resource type",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-active-resources-l",
-          "menuName": null,
-          "caption": "Active resources",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-a-r-attribute-l",
-          "menuName": null,
-          "caption": "A r attribute",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-a-r-business-process-l",
-          "menuName": null,
-          "caption": "A r business process",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-a-r-resource-l",
-          "menuName": null,
-          "caption": "A r resource",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-a-r-instance-l",
-          "menuName": null,
-          "caption": "A r instance",
+          "caption": "Бизнес-процессы",
           "title": "",
           "children": null
         },
         {
           "link": "n-i-b-g-operation-l",
           "menuName": null,
-          "caption": "Operation",
+          "caption": "Операции",
+          "title": "",
+          "children": null
+        }
+      ]
+    },
+    {
+      "link": null,
+      "menuName": "ресурсы",
+      "caption": "Ресурсы",
+      "title": "Ресурсы",
+      "children": [
+        {
+          "link": "n-i-b-g-resource-l",
+          "menuName": null,
+          "caption": "Ресурсы",
           "title": "",
           "children": null
         },
         {
-          "link": "n-i-b-g-resource-in-a-r-operation-l",
+          "link": "n-i-b-g-resource-type-l",
           "menuName": null,
-          "caption": "Resource in a r operation",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-a-r-resource-attribute-l",
-          "menuName": null,
-          "caption": "A r resource attribute",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-resource-in-operation-l",
-          "menuName": null,
-          "caption": "Resource in operation",
+          "caption": "Типы ресурсов",
           "title": "",
           "children": null
         },
         {
           "link": "n-i-b-g-resource-attribute-l",
           "menuName": null,
-          "caption": "Resource attribute",
+          "caption": "Атрибуты ресурсов",
           "title": "",
           "children": null
         },
+        {
+          "link": "n-i-b-g-resource-in-operation-l",
+          "menuName": null,
+          "caption": "Ресурсы в операциях БП",
+          "title": "",
+          "children": null
+        }
+      ]
+    },
+    {
+      "link": null,
+      "menuName": "активные-ресурсы-а-р",
+      "caption": "Активные ресурсы (АР)",
+      "title": "Активные ресурсы (АР)",
+      "children": [
         {
           "link": "n-i-b-g-active-resource-l",
           "menuName": null,
-          "caption": "Active resource",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-resource-l",
-          "menuName": null,
-          "caption": "Resource",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-a-r-resource-i-n-a-r-operation-l",
-          "menuName": null,
-          "caption": "A r resource i n a r operation",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-a-r-in-operation-l",
-          "menuName": null,
-          "caption": "A r in operation",
-          "title": "",
-          "children": null
-        },
-        {
-          "link": "n-i-b-g-a-r-resource-type-l",
-          "menuName": null,
-          "caption": "A r resource type",
+          "caption": "Активные ресурсы",
           "title": "",
           "children": null
         },
         {
           "link": "n-i-b-g-active-resource-type-l",
           "menuName": null,
-          "caption": "Active resource type",
+          "caption": "Типы активных ресурсов",
+          "title": "",
+          "children": null
+        },
+        {
+          "link": "n-i-b-g-a-r-instance-l",
+          "menuName": null,
+          "caption": "Экземпляры АР",
+          "title": "",
+          "children": null
+        },
+        {
+          "link": "n-i-b-g-a-r-attribute-l",
+          "menuName": null,
+          "caption": "Атрибуты экземпляров АР",
+          "title": "",
+          "children": null
+        },
+        {
+          "link": "n-i-b-g-resource-in-a-r-operation-l",
+          "menuName": null,
+          "caption": "Ресурсы в операциях АР",
+          "title": "",
+          "children": null
+        },
+        {
+          "link": "n-i-b-g-a-r-resource-i-n-a-r-operation-l",
+          "menuName": null,
+          "caption": "Ресурсы АР в операциях АР",
+          "title": "",
+          "children": null
+        }
+      ]
+    },
+    {
+      "link": null,
+      "menuName": "бизнес-процессы-а-р",
+      "caption": "Бизнес-процессы АР",
+      "title": "Бизнес-процессы АР",
+      "children": [
+        {
+          "link": "n-i-b-g-a-r-business-process-l",
+          "menuName": null,
+          "caption": "Бизнес-процессы АР",
           "title": "",
           "children": null
         },
         {
           "link": "n-i-b-g-a-r-operation-l",
           "menuName": null,
-          "caption": "A r operation",
+          "caption": "Операции АР",
+          "title": "",
+          "children": null
+        },
+        {
+          "link": "n-i-b-g-a-r-resource-attribute-l",
+          "menuName": null,
+          "caption": "Атрибуты ресурсов АР",
+          "title": "",
+          "children": null
+        },
+        {
+          "link": "n-i-b-g-a-r-resource-l",
+          "menuName": null,
+          "caption": "Ресурсы АР",
+          "title": "",
+          "children": null
+        },
+        {
+          "link": "n-i-b-g-a-r-resource-type-l",
+          "menuName": null,
+          "caption": "Типы ресурсов АР",
           "title": "",
           "children": null
         }

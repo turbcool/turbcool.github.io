@@ -1,0 +1,13 @@
+<div class="ui card">
+    <div class="content">
+        {{processType.name}}
+        <div class="description">
+            {{process.name}}
+
+            {{#each process.attribute as |attribute|}}
+            <p>{{attribute.name}}</p>
+            {{#if showAmount }} <p>{{attribute.amount}}</p>{{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>

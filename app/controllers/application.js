@@ -7,108 +7,113 @@ export default Ember.Controller.extend({
     return {
       nodes: [
         {
-          link: 'index',
+          link: 'game',
           caption: i18n.t('forms.application.sitemap.index.caption'),
           title: i18n.t('forms.application.sitemap.index.title'),
           children: null
         }, {
           link: null,
-          caption: i18n.t('forms.application.sitemap.app.caption'),
-          title: i18n.t('forms.application.sitemap.app.title'),
+          caption: i18n.t('forms.application.sitemap.бизнес-процессы.caption'),
+          title: i18n.t('forms.application.sitemap.бизнес-процессы.title'),
           children: [{
             link: 'n-i-b-g-business-process-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-business-process-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-business-process-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-resource-type-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-type-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-type-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-active-resources-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-active-resources-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-active-resources-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-a-r-attribute-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-attribute-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-attribute-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-a-r-business-process-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-business-process-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-business-process-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-a-r-resource-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-resource-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-resource-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-a-r-instance-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-instance-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-instance-l.title'),
+            caption: i18n.t('forms.application.sitemap.бизнес-процессы.n-i-b-g-business-process-l.caption'),
+            title: i18n.t('forms.application.sitemap.бизнес-процессы.n-i-b-g-business-process-l.title'),
             children: null
           }, {
             link: 'n-i-b-g-operation-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-operation-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-operation-l.title'),
+            caption: i18n.t('forms.application.sitemap.бизнес-процессы.n-i-b-g-operation-l.caption'),
+            title: i18n.t('forms.application.sitemap.бизнес-процессы.n-i-b-g-operation-l.title'),
+            children: null
+          }]
+        }, {
+          link: null,
+          caption: i18n.t('forms.application.sitemap.ресурсы.caption'),
+          title: i18n.t('forms.application.sitemap.ресурсы.title'),
+          children: [{
+            link: 'n-i-b-g-resource-l',
+            caption: i18n.t('forms.application.sitemap.ресурсы.n-i-b-g-resource-l.caption'),
+            title: i18n.t('forms.application.sitemap.ресурсы.n-i-b-g-resource-l.title'),
             children: null
           }, {
-            link: 'n-i-b-g-resource-in-a-r-operation-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-in-a-r-operation-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-in-a-r-operation-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-a-r-resource-attribute-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-resource-attribute-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-resource-attribute-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-resource-in-operation-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-in-operation-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-in-operation-l.title'),
+            link: 'n-i-b-g-resource-type-l',
+            caption: i18n.t('forms.application.sitemap.ресурсы.n-i-b-g-resource-type-l.caption'),
+            title: i18n.t('forms.application.sitemap.ресурсы.n-i-b-g-resource-type-l.title'),
             children: null
           }, {
             link: 'n-i-b-g-resource-attribute-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-attribute-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-attribute-l.title'),
+            caption: i18n.t('forms.application.sitemap.ресурсы.n-i-b-g-resource-attribute-l.caption'),
+            title: i18n.t('forms.application.sitemap.ресурсы.n-i-b-g-resource-attribute-l.title'),
             children: null
           }, {
+            link: 'n-i-b-g-resource-in-operation-l',
+            caption: i18n.t('forms.application.sitemap.ресурсы.n-i-b-g-resource-in-operation-l.caption'),
+            title: i18n.t('forms.application.sitemap.ресурсы.n-i-b-g-resource-in-operation-l.title'),
+            children: null
+          }]
+        }, {
+          link: null,
+          caption: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.caption'),
+          title: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.title'),
+          children: [{
             link: 'n-i-b-g-active-resource-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-active-resource-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-active-resource-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-resource-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-resource-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-a-r-resource-i-n-a-r-operation-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-resource-i-n-a-r-operation-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-resource-i-n-a-r-operation-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-a-r-in-operation-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-in-operation-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-in-operation-l.title'),
-            children: null
-          }, {
-            link: 'n-i-b-g-a-r-resource-type-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-resource-type-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-resource-type-l.title'),
+            caption: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-active-resource-l.caption'),
+            title: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-active-resource-l.title'),
             children: null
           }, {
             link: 'n-i-b-g-active-resource-type-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-active-resource-type-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-active-resource-type-l.title'),
+            caption: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-active-resource-type-l.caption'),
+            title: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-active-resource-type-l.title'),
+            children: null
+          }, {
+            link: 'n-i-b-g-a-r-instance-l',
+            caption: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-a-r-instance-l.caption'),
+            title: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-a-r-instance-l.title'),
+            children: null
+          }, {
+            link: 'n-i-b-g-a-r-attribute-l',
+            caption: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-a-r-attribute-l.caption'),
+            title: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-a-r-attribute-l.title'),
+            children: null
+          }, {
+            link: 'n-i-b-g-resource-in-a-r-operation-l',
+            caption: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-resource-in-a-r-operation-l.caption'),
+            title: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-resource-in-a-r-operation-l.title'),
+            children: null
+          }, {
+            link: 'n-i-b-g-a-r-resource-i-n-a-r-operation-l',
+            caption: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-a-r-resource-i-n-a-r-operation-l.caption'),
+            title: i18n.t('forms.application.sitemap.активные-ресурсы-а-р.n-i-b-g-a-r-resource-i-n-a-r-operation-l.title'),
+            children: null
+          }]
+        }, {
+          link: null,
+          caption: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.caption'),
+          title: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.title'),
+          children: [{
+            link: 'n-i-b-g-a-r-business-process-l',
+            caption: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-business-process-l.caption'),
+            title: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-business-process-l.title'),
             children: null
           }, {
             link: 'n-i-b-g-a-r-operation-l',
-            caption: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-operation-l.caption'),
-            title: i18n.t('forms.application.sitemap.app.n-i-b-g-a-r-operation-l.title'),
+            caption: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-operation-l.caption'),
+            title: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-operation-l.title'),
+            children: null
+          }, {
+            link: 'n-i-b-g-a-r-resource-attribute-l',
+            caption: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-resource-attribute-l.caption'),
+            title: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-resource-attribute-l.title'),
+            children: null
+          }, {
+            link: 'n-i-b-g-a-r-resource-l',
+            caption: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-resource-l.caption'),
+            title: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-resource-l.title'),
+            children: null
+          }, {
+            link: 'n-i-b-g-a-r-resource-type-l',
+            caption: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-resource-type-l.caption'),
+            title: i18n.t('forms.application.sitemap.бизнес-процессы-а-р.n-i-b-g-a-r-resource-type-l.title'),
             children: null
           }]
         }
@@ -131,7 +136,7 @@ export default Ember.Controller.extend({
     @method _userSettingsServiceChanged
     @private
   */
-  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function() {
+  _userSettingsServiceChanged: Ember.observer('userSettingsService.isUserSettingsServiceEnabled', function () {
     this.get('target.router').refresh();
   }),
 
