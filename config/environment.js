@@ -1,12 +1,12 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   // Replace this local address to remote when backed will be published.
-  var backendUrl = 'http://localhost:6500';
+  var backendUrl = 'https://bgbackend.azurewebsites.net/';
 
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.
-    backendUrl = 'http://localhost:6500';
+    backendUrl = 'https://bgbackend.azurewebsites.net/';
   }
 
 
@@ -16,7 +16,7 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
-      LOG_STACKTRACE_ON_DEPRECATION: false,
+      LOG_STACKTRACE_ON_DEPRECATION: false,
 
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -58,7 +58,7 @@ module.exports = function(environment) {
       },
 
       // Lock settings.
-     lock: {
+      lock: {
         enabled: true,
         openReadOnly: true,
         unlockObject: true,
@@ -156,6 +156,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.locationType = 'hash';
+    ENV.baseUrl = '/ember-app/';
 
   }
 
