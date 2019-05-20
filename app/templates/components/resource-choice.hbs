@@ -2,11 +2,10 @@
     <div class="content">
         <a id={{resource.id}} class="header">{{resourceType.name}}</a>
         <div class="description">
-            {{resource.name}}
+            <p>{{resource.name}}</p>
 
-            {{#each resource.attribute as |attribute|}}
-            <p>{{attribute.name}}</p>
-            {{#if showAmount }} <p>{{attribute.amount}}</p>{{/if}}
+            {{#each resAttrs as |attr|}}
+            <p>{{attr.name}} {{#if showAmount}}{{attr.amount}}{{/if}}</p>
             {{/each}}
         </div>
     </div>

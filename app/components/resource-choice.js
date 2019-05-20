@@ -23,6 +23,9 @@ export default Ember.Component.extend({
             });
 
         });
+        this.loadResAttributes(resID, store).then((attrs) => {
+            self.set('resAttrs', attrs);
+        });
     },
 
     /**
@@ -46,5 +49,22 @@ export default Ember.Component.extend({
             return resType;
         });
     },
+
+
+    loadResAttributes(resKey, store) {
+        let self = this;
+
+        let byKey = new SimplePredicate('resource.id', Query.FilterOperator.Eq, resKey);
+
+        let builder = new Query.Builder(store)
+            .from('n-i-b-g-resource-attribute')
+            .selectByProjection('ResourceAttributeE')
+            .where(byKey);
+
+        return store.query('n-i-b-g-resource-attribute', builder.build()).then((result) => {
+            let attrs = result;
+            return attrs;
+        });
+    }
 
 });

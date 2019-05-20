@@ -419,20 +419,21 @@ export default Ember.Controller.extend({
         //Логирование полученной команды:
         this.logLSACommand(command);
 
-        //Исполнение команды ЛСА:
+        //Определить тип входной команды:
         switch (command.type) {
+            //Команда "запустить симуляцию":
             case 'simulate':
                 switch (command.value.charAt(0)) {
+                    //Симуляция процесса:
                     case 'P':
                         return this.startProcess(command.value).then(() => {
                             self.nextLSACommand(lsa, pos);
                         });
-                    //break;
+                    //Симуляция операции:
                     case 'O':
                         return this.startOperation(command.value).then(() => {
                             self.nextLSACommand(lsa, pos);
                         });
-                    //break;
                     case 'A':
                         switch (command.value.charAt(2)) {
                             case 'P':
@@ -535,6 +536,7 @@ export default Ember.Controller.extend({
     clearLog() {
         this.set('time', 0);
         this.set('log', []);
+        this.set('arInstances', []);
         this.set('activeProcesses', []);
         this.set('activeARProcesses', []);
     },
@@ -555,7 +557,8 @@ export default Ember.Controller.extend({
         startProcess() {
             let self = this;
             this.clearLog();
-            this.startProcess('P0');
+            let procCode = this.get('chosenProcessCode');
+            this.startProcess(procCode);
         },
 
         showDebug() {

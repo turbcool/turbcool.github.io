@@ -2,6 +2,9 @@
     <div class="row">
         <h3>Игровое время: {{time}} часов</h3>
     </div>
+    <div class="row">
+        <h3>Бюджет проекта: 5000р</h3>
+    </div>
     <div class="three column row">
         {{#each arInstances as |item|}}
         <div class="column">
@@ -10,7 +13,9 @@
         {{/each}}
     </div>
     <div class="row">
-        <button class="ui button" {{action "startProcess"}}>Запустить процесс</button>
+        {{flexberry-field
+        placeholder='Код процесса'
+        value=chosenProcessCode}}<br><button class="ui button" {{action "startProcess"}}>Запустить процесс</button>
     </div>
 
     {{#if waitForUserMode}}
@@ -36,7 +41,7 @@
                 <div class="three column row">
                     {{#each userChoice as |item|}}
                     <div class="column">
-                        {{resource-choice resource=item choice='choice'}}
+                        {{resource-choice resource=item choice='choice' showAmount='true'}}
                     </div>
                     {{/each}}
                 </div>

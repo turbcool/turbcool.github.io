@@ -4,9 +4,9 @@
         <div class="description">
             {{resource.name}}
 
-            {{#each resource.attribute as |attribute|}}
-            <p>{{attribute.name}}</p>
-            {{#if showAmount }} <p>{{attribute.amount}}</p>{{/if}}
+            {{#each resAttrs as |attr|}}
+            <p>{{attr.name}}</p>
+            {{#if showAmount }} <p>{{attr.amount}}</p>{{/if}}
             {{/each}}
         </div>
     </div>
